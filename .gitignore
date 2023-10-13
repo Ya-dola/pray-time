@@ -41,3 +41,6 @@ next-env.d.ts
 /cypress/downloads
 /cypress/screenshots
 /cypress/videos
+
+# Firebase Config Files
+firebase-config.json
