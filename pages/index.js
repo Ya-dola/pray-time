@@ -1,9 +1,21 @@
 import PushNotifLayout from "@/components/PushNotifLayout";
 
-export default function Home() {
+const Home = () => {
   return (
-    <PushNotifLayout>
-      <div>Hello</div>
+    <PushNotifLayout
+      title="Pray Time"
+      message="Notification Message is Working"
+    >
+      {(showNotificationAndToast) => (
+        <div>
+          <button onClick={showNotificationAndToast}>
+            Trigger Push Notification and Toast
+          </button>
+          <div>Hello</div>
+        </div>
+      )}
     </PushNotifLayout>
   );
-}
+};
+
+export default Home;
