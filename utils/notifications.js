@@ -1,4 +1,6 @@
 // Show Local Notification
+// noinspection JSIgnoredPromiseFromCall
+
 const showNotification = (title, message, imageUrl) => {
   const notificationOptions = {
     body: message || "Default Notification Message",

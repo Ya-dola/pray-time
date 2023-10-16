@@ -15,9 +15,10 @@ const TimerNotif = ({ title, message, img, hours, minutes }) => {
       // noinspection JSCheckFunctionSignatures
       clearInterval(intervalId); // Clear the interval on component unmount
     };
-  }, [title, message, hours, minutes]);
+  }, [title, message, img, hours, minutes]);
 
-  return null; // This component doesn't render anything, it just triggers notifications
+  // This component doesn't render anything, it just triggers notifications
+  return null;
 };
 
 export default TimerNotif;
