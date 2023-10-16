@@ -1,70 +1,84 @@
 # Pray-Time
-Prayer Time Reminder PWA built with NextJS, React, Supabase and Firebase Cloud Messaging
+
+Prayer Time Reminder PWA built with Next.js, React, Supabase, and Local Notifications
 
 ### Plan:
 
 1. **User Interface Design:**
-   - Create a simple and intuitive UI with checkboxes for each prayer.
-   - Implement a search bar for city selection.
-   - Allow users to set preferred reminder times for each prayer.
-   - Display the prayer times fetched from the API.
-   - Implement a streak mechanism for gamification (future addition).
-   - Design the UI to be responsive for various devices and screen sizes.
+    - Create a simple and intuitive UI with checkboxes for each prayer.
+    - Implement a search bar for city selection.
+    - Allow users to set preferred reminder times for each prayer.
+    - Display the prayer times fetched from the API.
+    - Implement a streak mechanism for gamification (future addition).
+    - Design the UI to be responsive for various devices and screen sizes.
+    - Design a logo for the app.
+    - Design logos for Notifications based on prayer and the notification counter for each prayer.
 
-2. **Push Notifications (FCM):**
-   - Integrate Firebase Cloud Messaging (FCM) for sending push notifications.
-   - Implement push notifications for prayer reminders, increasing in frequency as the prayer time approaches.
+2. **Push Notifications (Local Notifications):**
+    - Implement local notifications for sending prayer reminders, increasing in frequency as the prayer time approaches.
+    - Design a notification counter for each prayer to display the number of pending notifications.
 
 3. **Backend Integration (Future Addition):**
-   - Implement user authentication using Supabase (future addition).
-   - Set up a backend with Supabase for storing user preferences, streaks, and other data (future addition).
+    - Implement user authentication using Supabase (future addition).
+    - Set up a backend with Supabase for storing user preferences, streaks, and other data (future addition).
+    - Create documentation on how to add the PWA app to user's devices.
 
 ### Structure:
 
 1. **Components:**
-   - `CheckboxComponent`: For rendering prayer checkboxes.
-   - `SearchBarComponent`: For city selection.
-   - `SettingsComponent`: For setting preferred reminder times.
-   - `StreakComponent`: For displaying streak information (future addition).
-   - `NotificationComponent`: For handling push notifications.
+    - `CheckboxComponent`: For rendering prayer checkboxes.
+    - `SearchBarComponent`: For city selection.
+    - `SettingsComponent`: For setting preferred reminder times.
+    - `StreakComponent`: For displaying streak information (future addition).
+    - `NotificationComponent`: For handling local notifications.
 
 2. **Pages:**
-   - `Index.js`: Main page displaying prayer checkboxes, search bar, and streak information (future addition).
-   - `Settings.js`: Page for user settings and preferences (future addition).
-   - `Login.js` and `Signup.js` (future addition): Pages for user authentication.
+    - `Index.js`: Main page displaying prayer checkboxes, search bar, and streak information (future addition).
+    - `Settings.js`: Page for user settings and preferences (future addition).
+    - `Login.js` and `Signup.js` (future addition): Pages for user authentication.
+
+3. **Testing:**
+    - Create test files for unit and integration tests to ensure the app functions correctly.
 
 ### Tech Stack:
 
 1. **Frontend:**
-   - **Next.js**: For building the PWA with server-side rendering capabilities.
-   - **React**: For building interactive user interfaces.
-   - **Firebase Cloud Messaging (FCM)**: For sending push notifications to users.
+    - **Next.js**: For building the PWA with server-side rendering capabilities.
+    - **React**: For building interactive user interfaces.
+    - **Local Notifications**: For sending push notifications to users' devices without relying on external services.
 
-2. **Push Notifications:**
-   - **Firebase Cloud Messaging (FCM)**: For sending push notifications to users.
-
-3. **Future Backend (Post-Initial Development, if budget allows):**
-   - **Supabase**: For implementing user authentication and storing user data (future addition).
+2. **Persistence:**
+    - **Local Storage**: Use local storage to store user preferences and app state if the user is not logged in.
 
 ### Workflow:
 
 1. **Frontend Development:**
-   - Create the components and pages as outlined in the structure.
-   - Implement FCM integration for push notifications.
-   - Implement API integration functions for fetching prayer timings.
+    - Create the components and pages as outlined in the structure.
+    - Implement local notifications for push notification functionality.
+    - Implement API integration functions for fetching prayer timings.
 
-2. **Push Notification Implementation:**
-   - Implement push notifications using Firebase Cloud Messaging.
-   - Handle notification logic based on user preferences and prayer times.
+2. **Local Notification Implementation:**
+    - Implement local notifications for prayer reminders.
+    - Handle notification logic based on user preferences and prayer times.
 
 3. **Testing:**
-   - Test the PWA thoroughly to ensure all features work as expected.
-   - Test push notifications on various devices and platforms.
+    - Write unit and integration tests to validate the functionality of the app components and notification system.
 
 4. **Deployment:**
-   - Deploy the Next.js app to a hosting service like Vercel, Netlify, or AWS Amplify.
-   - Configure any necessary environment variables for Firebase.
+    - Deploy the Next.js app to a hosting service like Vercel, Netlify, or AWS Amplify.
+    - Configure any necessary environment variables for the app.
 
 5. **Future Backend Implementation (Post-Initial Development, if budget allows):**
-   - Implement user authentication using Supabase.
-   - Set up a Supabase backend for storing user data and preferences.
+    - Implement user authentication using Supabase.
+    - Set up a Supabase backend for storing user data and preferences.
+    - Implement endpoints for retrieving prayer times and other necessary data.
+
+6. **Documentation:**
+    - Create a comprehensive guide on how users can add the PWA app to their devices.
+    - Provide instructions on how to use the app, set preferences, and receive notifications.
+    - Include troubleshooting steps for common issues users might encounter.
+
+7. **Logo Design:**
+    - Design a logo for the Pray-Time app.
+    - Design separate logos for notifications based on prayer types and include a counter for pending notifications.
+
