@@ -1,34 +1,8 @@
 import PushNotifLayout from "@/components/PushNotifLayout";
 import { showNotification } from "@/utils/notifications";
-import { useEffect } from "react";
+import TimerNotif from "@/components/TimerNotif";
 
 const Home = () => {
-  // Set the desired notification time (24-hour format)
-  const notificationHour = 14; // 12 PM
-  const notificationMinute = 58; // 00 minutes (adjust as needed)
-
-  // Function to check if the current time matches the notification time
-  const checkNotificationTime = () => {
-    const now = new Date();
-    if (
-      now.getHours() === notificationHour &&
-      now.getMinutes() === notificationMinute
-    ) {
-      // Trigger the notification when the current time matches the notification time
-      showNotification("Daily Reminder", "It's time for your daily task!");
-    }
-  };
-
-  useEffect(() => {
-    // Check the notification time every minute (you can adjust the interval as needed)
-    const intervalId = setInterval(checkNotificationTime, 60000);
-    return () => {
-      // noinspection JSCheckFunctionSignatures
-      // Clear the interval on component unmount
-      clearInterval(intervalId);
-    };
-  }, []); // Empty dependency array ensures the effect runs once after the initial render
-
   return (
     <div>
       <PushNotifLayout title="Pray Notif Time" message="Test Body Message">
@@ -49,6 +23,18 @@ const Home = () => {
       >
         Trigger Notification
       </button>
+      <TimerNotif
+        title={"Timer Notification"}
+        message={"Timer Test Message In TIME"}
+        hours={18}
+        minutes={17}
+      />
+      <TimerNotif
+        title={"Timer Notification 2"}
+        message={"Timer Test Message without facts"}
+        hours={18}
+        minutes={18}
+      />
     </div>
   );
 };
