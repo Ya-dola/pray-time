@@ -1,7 +1,7 @@
 import React from "react";
 import { ToastContainer, toast } from "react-toastify";
 
-const PushNotifLayout = ({ children, title, message }) => {
+const PushToastLayout = ({ children, title, message }) => {
   // Function to show the toast message
   const showToast = () => {
     toast(
@@ -24,4 +24,4 @@ const PushNotifLayout = ({ children, title, message }) => {
   );
 };
 
-export default PushNotifLayout;
+export default PushToastLayout;

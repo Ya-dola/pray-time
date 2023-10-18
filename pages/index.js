@@ -1,17 +1,17 @@
-import PushNotifLayout from "@/components/PushNotifLayout";
-import { showNotification } from "@/utils/notifications";
+import PushToastLayout from "@/components/PushToastLayout";
 import TimerNotif from "@/components/TimerNotif";
+import { showNotification } from "@/utils/notifications";
 
 const Home = () => {
   return (
     <div>
-      <PushNotifLayout title="Pray Notif Time" message="Test Body Message">
+      <PushToastLayout title="Pray Toast Time" message="Test Body Message">
         {(showToast) => (
           <>
             <button onClick={() => showToast()}>Trigger Toast</button>
           </>
         )}
-      </PushNotifLayout>
+      </PushToastLayout>
       <div>Hello</div>
       <button
         onClick={() =>
@@ -26,8 +26,8 @@ const Home = () => {
       <TimerNotif
         title={"Timer Notification"}
         message={"Timer Test Message In TIME"}
-        hours={18}
-        minutes={17}
+        hours={12}
+        minutes={53}
       />
       <TimerNotif
         title={"Timer Notification 2"}
