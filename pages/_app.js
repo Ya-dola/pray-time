@@ -1,5 +1,6 @@
 import "@/styles/globals.css";
 import "react-toastify/dist/ReactToastify.css";
+import DailyPrayTimes from "@/components/DailyPrayTimes";
 
 const MyApp = ({ Component, pageProps }) => {
   if (
@@ -20,7 +21,12 @@ const MyApp = ({ Component, pageProps }) => {
       });
   }
 
-  return <Component {...pageProps} />;
+  return (
+    <>
+      <Component {...pageProps} />
+      <DailyPrayTimes />
+    </>
+  );
 };
 
 export default MyApp;
