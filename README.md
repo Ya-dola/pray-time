@@ -23,21 +23,7 @@ Prayer Time Reminder PWA built with Next.js, React, Supabase, and Local Notifica
     - Set up a backend with Supabase for storing user preferences, streaks, and other data (future addition).
     - Create documentation on how to add the PWA app to user's devices.
 
-### Structure:
-
-1. **Components:**
-    - `CheckboxComponent`: For rendering prayer checkboxes.
-    - `SearchBarComponent`: For city selection.
-    - `SettingsComponent`: For setting preferred reminder times.
-    - `StreakComponent`: For displaying streak information (future addition).
-    - `NotificationComponent`: For handling local notifications.
-
-2. **Pages:**
-    - `Index.js`: Main page displaying prayer checkboxes, search bar, and streak information (future addition).
-    - `Settings.js`: Page for user settings and preferences (future addition).
-    - `Login.js` and `Signup.js` (future addition): Pages for user authentication.
-
-3. **Testing:**
+4. **Testing:**
     - Create test files for unit and integration tests to ensure the app functions correctly.
 
 ### Tech Stack:

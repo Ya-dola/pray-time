@@ -48,7 +48,7 @@ const fetchAdhanData = async () => {
     .then((response) => response.json())
     .then((responseData) => {
       data = responseData.data;
-      console.log("Data Fetched:", data);
+      // console.log("Data Fetched:", data);
 
       setApiResDate(data?.date?.gregorian?.date);
       setUpdateRate(dailyUpdateRate());
