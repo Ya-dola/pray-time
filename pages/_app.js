@@ -3,6 +3,7 @@ import "react-toastify/dist/ReactToastify.css";
 import DailyPrayTimes from "@/components/DailyPrayTimes";
 
 const MyApp = ({ Component, pageProps }) => {
+  // Service Worker Connection
   if (
     typeof window !== "undefined" &&
     "serviceWorker" in navigator &&
@@ -20,7 +21,6 @@ const MyApp = ({ Component, pageProps }) => {
         console.error("Service Worker registration failed:", error);
       });
   }
-
   return (
     <>
       <Component {...pageProps} />

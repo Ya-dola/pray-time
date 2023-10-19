@@ -1,6 +1,7 @@
 import PushToastLayout from "@/components/PushToastLayout";
 import TimerNotif from "@/components/TimerNotif";
 import { showNotification } from "@/utils/notifications";
+import { getData, PRAYER_TIMINGS } from "@/utils/adhanApi";
 
 const Home = () => {
   return (
@@ -23,6 +24,15 @@ const Home = () => {
       >
         Trigger Notification
       </button>
+      <div>
+        <button
+          onClick={() =>
+            console.log("Button", getData().timings[PRAYER_TIMINGS.DHUHR])
+          }
+        >
+          Show Adhan
+        </button>
+      </div>
       <TimerNotif
         title={"Timer Notification"}
         message={"Timer Test Message In TIME"}
