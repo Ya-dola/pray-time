@@ -1,6 +1,9 @@
 import "@/styles/globals.css";
-import "react-toastify/dist/ReactToastify.css";
+import "@radix-ui/themes/styles.css";
+import { Theme } from "@radix-ui/themes";
+import { ThemeProvider } from "next-themes";
 import DailyPrayTimes from "@/components/DailyPrayTimes";
+import "react-toastify/dist/ReactToastify.css";
 
 const MyApp = ({ Component, pageProps }) => {
   // Service Worker Connection
@@ -21,11 +24,19 @@ const MyApp = ({ Component, pageProps }) => {
         console.error("Service Worker registration failed:", error);
       });
   }
+
   return (
-    <>
-      <Component {...pageProps} />
-      <DailyPrayTimes />
-    </>
+    <ThemeProvider attribute={"class"} enableSystem={false}>
+      <Theme
+        accentColor={"plum"}
+        radius={"large"}
+        grayColor={"mauve"}
+        scaling={"110%"}
+      >
+        <Component {...pageProps} />
+        <DailyPrayTimes />
+      </Theme>
+    </ThemeProvider>
   );
 };
 

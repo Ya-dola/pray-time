@@ -1,11 +1,15 @@
 import PushToastLayout from "@/components/PushToastLayout";
 import TimerNotif from "@/components/TimerNotif";
+import ThemeButton from "@/components/ThemeButton";
+import Layout from "@/components/Layout/Layout";
 import { showNotification } from "@/utils/notifications";
 import { getData, PRAYER_TIMINGS } from "@/utils/adhanApi";
 
+const metadata = { title: "Home", description: "Home Page" };
+
 const Home = () => {
   return (
-    <div>
+    <Layout metadata={metadata}>
       <PushToastLayout title="Pray Toast Time" message="Test Body Message">
         {(showToast) => (
           <>
@@ -45,7 +49,8 @@ const Home = () => {
         hours={18}
         minutes={18}
       />
-    </div>
+      <ThemeButton />
+    </Layout>
   );
 };
 

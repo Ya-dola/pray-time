@@ -4,7 +4,7 @@ const COOKIENUM = {
   API_RESULTS_DATE: "api_results_date",
   CITY: "city",
   COUNTRY: "country",
-  METHOD: "3",
+  METHOD: "method",
   UPDATE_RATE: "update_rate",
 };
 

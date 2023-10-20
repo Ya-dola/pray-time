@@ -5,26 +5,26 @@
     "timings": {
       "Fajr": "04:47",
       "Sunrise": "05:57",
-      "Dhuhr": "11:56",
-      "Asr": "15:16",
+      "Dhuhr": "11:55",
+      "Asr": "15:17",
       "Sunset": "17:54",
       "Maghrib": "17:54",
       "Isha": "19:00",
       "Imsak": "04:37",
-      "Midnight": "23:56",
+      "Midnight": "23:55",
       "Firstthird": "21:55",
       "Lastthird": "01:56"
     },
     "date": {
-      "readable": "18 Oct 2023",
-      "timestamp": "1697592600",
+      "readable": "20 Oct 2023",
+      "timestamp": "1697765400",
       "hijri": {
-        "date": "03-04-1445",
+        "date": "05-04-1445",
         "format": "DD-MM-YYYY",
-        "day": "03",
+        "day": "05",
         "weekday": {
-          "en": "Al Arba'a",
-          "ar": "\u0627\u0644\u0627\u0631\u0628\u0639\u0627\u0621"
+          "en": "Al Juma'a",
+          "ar": "\u0627\u0644\u062c\u0645\u0639\u0629"
         },
         "month": {
           "number": 4,
@@ -39,11 +39,11 @@
         "holidays": []
       },
       "gregorian": {
-        "date": "18-10-2023",
+        "date": "20-10-2023",
         "format": "DD-MM-YYYY",
-        "day": "18",
+        "day": "20",
         "weekday": {
-          "en": "Wednesday"
+          "en": "Friday"
         },
         "month": {
           "number": 10,
