@@ -33,8 +33,8 @@ const MyApp = ({ Component, pageProps }) => {
         grayColor={"mauve"}
         scaling={"110%"}
       >
-        <Component {...pageProps} />
         <DailyPrayTimes />
+        <Component {...pageProps} />
       </Theme>
     </ThemeProvider>
   );
