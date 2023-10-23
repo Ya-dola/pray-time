@@ -4,7 +4,7 @@ import ThemeButton from "@/components/ThemeButton";
 import Layout from "@/components/Layout/Layout";
 import { showNotification } from "@/utils/notifications";
 import PrayerCard from "@/components/PrayerCard/PrayerCard";
-import { getData, PRAYER_TIMINGS } from "@/utils/adhanApi";
+import { PRAYER_TIMINGS } from "@/utils/adhanApi";
 import { Flex } from "@radix-ui/themes";
 
 const metadata = { title: "Home", description: "Home Page" };
@@ -31,15 +31,6 @@ const Home = () => {
         >
           Trigger Notification
         </button>
-        <div>
-          <button
-            onClick={() =>
-              console.log("Button", getData().timings[PRAYER_TIMINGS.DHUHR])
-            }
-          >
-            Show Adhan
-          </button>
-        </div>
         <TimerNotif
           title={"Timer Notification"}
           message={"Timer Test Message In TIME"}

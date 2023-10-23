@@ -1,25 +1,23 @@
 import { useEffect } from "react";
-import { initAdhanData, updatePrayTimesForDay } from "@/utils/adhanApi";
-import { getCity, getCountry, getUpdateRate } from "@/utils/cookieUtils";
+import { fetchAdhanData, updateLocation } from "@/utils/adhanApi";
+import { useDispatch } from "react-redux";
+import DailyPrayTimesUpdater from "@/components/DailyPrayTimesUpdater";
+import { getCity, getCountry } from "@/utils/cookieUtils";
 
 const DailyPrayTimes = () => {
+  const dispatch = useDispatch();
   useEffect(() => {
+    // fetchAdhanData().then(() => {
+    //   console.log("Fetched Adhan Data");
+    // });
+
     // TODO - Change to be set from Location Bar
-    initAdhanData(getCity() || "Colombo", getCountry() || "LK");
+    updateLocation(getCity() || "Colombo", getCountry() || "LK").then(() => {
+      console.log("Updated Location of Adhan Data");
+    });
+  }, []);
 
-    const updatePrayTimesIntvl = setInterval(
-      () => {
-        updatePrayTimesForDay();
-      },
-      getUpdateRate() * 60 * 1000,
-    );
-
-    // Clear the interval when the component unmounts
-    // noinspection JSCheckFunctionSignatures
-    return () => clearInterval(updatePrayTimesIntvl);
-  }, []); // Empty dependency array ensures the effect runs once after the initial render
-
-  return null; // This component doesn't render anything to the DOM
+  return <DailyPrayTimesUpdater />;
 };
 
 export default DailyPrayTimes;
