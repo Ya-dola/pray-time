@@ -6,6 +6,7 @@ import { showNotification } from "@/utils/notifications";
 import PrayerCard from "@/components/PrayerCard/PrayerCard";
 import { PRAYER_TIMINGS } from "@/utils/adhanApi";
 import { Flex } from "@radix-ui/themes";
+import LocationBar from "@/components/LocationBar";
 
 const metadata = { title: "Home", description: "Home Page" };
 
@@ -44,6 +45,8 @@ const Home = () => {
           minutes={18}
         />
         <ThemeButton />
+
+        <LocationBar />
 
         <PrayerCard prayerName={PRAYER_TIMINGS.FAJR} />
         <PrayerCard prayerName={PRAYER_TIMINGS.DHUHR} />
