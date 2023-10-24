@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useEffect, useRef, useState } from "react";
 import Geonames from "geonames.js";
 
 const geonames = Geonames({
@@ -13,6 +13,7 @@ const LocationBar = () => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [isFocused, setIsFocused] = useState(false);
   const [initialLocationLoaded, setInitialLocationLoaded] = useState(false);
+  const inputRef = useRef(null); // Create a ref for the input element
 
   useEffect(() => {
     // Check if geolocation is supported by the browser
@@ -89,14 +90,21 @@ const LocationBar = () => {
         placeholder="Search for your location..."
         value={inputValue}
         onChange={(e) => handleInputChange(e.target.value)}
-        onFocus={() => setIsFocused(true)} // Set isFocused to true on focus
-        onBlur={() => setIsFocused(false)} // Set isFocused to false on blur
+        onFocus={() => {
+          setIsFocused(true);
+          if (inputRef.current) inputRef.current.select(); // Select all text when focused
+        }}
+        onBlur={() => {
+          setIsFocused(false);
+          setOptions([]);
+        }}
+        ref={inputRef} // Attach the ref to the input element
       />
       {isFocused && (
         <ul>
-          {options.map((option) => (
+          {options.map((option, index) => (
             <li
-              key={option.label}
+              key={index}
               onMouseDown={(e) => {
                 e.preventDefault(); // Prevent input field from losing focus
                 handleLocationSelect(option);
