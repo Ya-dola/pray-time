@@ -1,5 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import Geonames from "geonames.js";
+import { TextField } from "@radix-ui/themes";
+import { GlobeIcon } from "@radix-ui/react-icons";
 
 const geonames = Geonames({
   username: process.env.NEXT_PUBLIC_GEONAMES_USERNAME,
@@ -9,16 +11,15 @@ const geonames = Geonames({
 
 const LocationBar = () => {
   const [inputValue, setInputValue] = useState("");
-  const [options, setOptions] = useState([]);
-  const [selectedOption, setSelectedOption] = useState(null);
+  const [locationOptions, setLocationOptions] = useState([]);
+  const [selectedLocation, setSelectedLocation] = useState(null);
   const [isFocused, setIsFocused] = useState(false);
-  const [initialLocationLoaded, setInitialLocationLoaded] = useState(false);
-  const inputRef = useRef(null); // Create a ref for the input element
+  const locationInputRef = useRef(null);
 
   useEffect(() => {
     // Check if geolocation is supported by the browser
     if ("geolocation" in navigator) {
-      // Attempt to get the user's current position
+      // Attempt to get the user's current position from device
       navigator.geolocation.getCurrentPosition(
         async (position) => {
           const { latitude, longitude } = position.coords;
@@ -31,8 +32,6 @@ const LocationBar = () => {
             if (response && response.geonames && response.geonames.length > 0) {
               const userLocation = `${response.geonames[0].name}, ${response.geonames[0].countryName}`;
               setInputValue(userLocation);
-              setInitialLocationLoaded(true);
-              // Do not fetch suggestions on initial load
             }
           } catch (error) {
             console.error("Error fetching user location:", error);
@@ -47,29 +46,29 @@ const LocationBar = () => {
 
   const fetchLocations = async (inputValue) => {
     try {
-      if (!initialLocationLoaded) {
-        // If initial location is loaded, clear suggestions on typing
-        setOptions([]);
-      }
+      // noinspection JSCheckFunctionSignatures
       const response = await geonames.search({
         q: inputValue,
         featureClass: "P",
         maxRows: 10, // Limit the results to the top 10
       });
-      const locations = response.geonames.slice(0, 10).map((location) => ({
+      const queryLocations = response.geonames.slice(0, 10).map((location) => ({
         label: `${location.name}, ${location.countryName}`,
         value: {
           city: location.name,
           countryCode: location.countryCode,
         },
       }));
-      setOptions(locations);
+      setLocationOptions(queryLocations);
     } catch (error) {
       console.error("Error fetching locations:", error);
     }
   };
 
   const handleInputChange = (inputValue) => {
+    // Open the options list if typing
+    if (!isFocused) setIsFocused(true);
+
     setInputValue(inputValue);
     fetchLocations(inputValue).then(() =>
       console.log("Fetch Locations:", inputValue),
@@ -78,31 +77,41 @@ const LocationBar = () => {
 
   const handleLocationSelect = (selected) => {
     setInputValue(selected.label); // Update the input field value
-    setSelectedOption(selected);
+    setSelectedLocation(selected);
     setIsFocused(false); // Close the options list
     console.log("Selected Option:", selected);
   };
 
   return (
     <div>
-      <input
-        type="text"
-        placeholder="Search for your location..."
-        value={inputValue}
-        onChange={(e) => handleInputChange(e.target.value)}
-        onFocus={() => {
-          setIsFocused(true);
-          if (inputRef.current) inputRef.current.select(); // Select all text when focused
-        }}
-        onBlur={() => {
-          setIsFocused(false);
-          setOptions([]);
-        }}
-        ref={inputRef} // Attach the ref to the input element
-      />
+      <TextField.Root variant={"soft"} size={"3"} radius={"full"}>
+        <TextField.Slot>
+          <GlobeIcon width={28} height={28} />
+        </TextField.Slot>
+        <TextField.Input
+          placeholder="Set your location..."
+          value={inputValue}
+          onChange={(e) => handleInputChange(e.target.value)}
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === "Tab")
+              if (locationOptions.length > 0)
+                handleLocationSelect(locationOptions[0]);
+          }}
+          onFocus={() => {
+            setIsFocused(true);
+            if (locationInputRef.current) locationInputRef.current.select(); // Select all text when focused
+          }}
+          onBlur={() => {
+            setIsFocused(false);
+            setLocationOptions([]);
+          }}
+          ref={locationInputRef}
+        />
+      </TextField.Root>
+
       {isFocused && (
         <ul>
-          {options.map((option, index) => (
+          {locationOptions.map((option, index) => (
             <li
               key={index}
               onMouseDown={(e) => {

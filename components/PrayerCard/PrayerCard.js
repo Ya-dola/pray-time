@@ -15,7 +15,7 @@ const PrayerCard = ({ prayerName }) => {
 
   if (!prayerTimes) return null;
 
-  const iconsSize = "36";
+  const iconsSize = 36;
 
   return (
     <Card asChild>
