@@ -12,14 +12,50 @@ const LocationBar = () => {
   const [options, setOptions] = useState([]);
   const [selectedOption, setSelectedOption] = useState(null);
   const [isFocused, setIsFocused] = useState(false);
+  const [initialLocationLoaded, setInitialLocationLoaded] = useState(false);
+
+  useEffect(() => {
+    // Check if geolocation is supported by the browser
+    if ("geolocation" in navigator) {
+      // Attempt to get the user's current position
+      navigator.geolocation.getCurrentPosition(
+        async (position) => {
+          const { latitude, longitude } = position.coords;
+          try {
+            const response = await geonames.findNearbyPlaceName({
+              lat: latitude,
+              lng: longitude,
+              featureClass: "P",
+            });
+            if (response && response.geonames && response.geonames.length > 0) {
+              const userLocation = `${response.geonames[0].name}, ${response.geonames[0].countryName}`;
+              setInputValue(userLocation);
+              setInitialLocationLoaded(true);
+              // Do not fetch suggestions on initial load
+            }
+          } catch (error) {
+            console.error("Error fetching user location:", error);
+          }
+        },
+        (error) => {
+          console.error("Error getting user location:", error);
+        },
+      );
+    }
+  }, []); // Empty dependency array ensures this effect runs only once on initial load
 
   const fetchLocations = async (inputValue) => {
     try {
+      if (!initialLocationLoaded) {
+        // If initial location is loaded, clear suggestions on typing
+        setOptions([]);
+      }
       const response = await geonames.search({
         q: inputValue,
         featureClass: "P",
+        maxRows: 10, // Limit the results to the top 10
       });
-      const locations = response.geonames.map((location) => ({
+      const locations = response.geonames.slice(0, 10).map((location) => ({
         label: `${location.name}, ${location.countryName}`,
         value: {
           city: location.name,
