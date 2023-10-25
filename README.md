@@ -68,9 +68,20 @@ Prayer Time Reminder PWA built with Next.js, React, Supabase, and Local Notifica
     - Design a logo for the Pray-Time app.
     - Design separate logos for notifications based on prayer types and include a counter for pending notifications.
 
+## APIs Used in Application
+
 ### API Source: [Prayer Times API](https://aladhan.com/prayer-times-api)
 
 #### Other Potential Sources
 
 - [Daily Prayer Time API](https://github.com/abdulrcs/Daily-Prayer-Time-API)
 - [Services By Islam Network](https://islamic.network/services.html)
+
+### Location API Webservice: [GeoNames](https://www.geonames.org/)
+
+#### [Webservice Overview](https://www.geonames.org/export/ws-overview.html)
+
+##### Services Used
+
+- [Search](https://www.geonames.org/export/geonames-search.html)
+- [FindNearbyPlaceName](https://www.geonames.org/export/web-services.html#findNearbyPlaceName)
