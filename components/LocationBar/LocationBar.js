@@ -1,6 +1,10 @@
 import { useEffect, useState } from "react";
+import { Flex, IconButton, Tooltip } from "@radix-ui/themes";
+import { PaperPlaneIcon } from "@radix-ui/react-icons";
 import Geonames from "geonames.js";
 import SearchBar from "@/components/SearchBar/SearchBar";
+import { updateLocation } from "@/utils/adhanApi";
+import { getCity, getCountryCode } from "@/utils/cookieUtils";
 
 const geonames = Geonames({
   username: process.env.NEXT_PUBLIC_GEONAMES_USERNAME,
@@ -16,9 +20,41 @@ const LocationBar = () => {
   const [queryValue, setQueryValue] = useState("");
   const [locationOptions, setLocationOptions] = useState([]);
 
+  const iconSize = 20;
+
   useEffect(() => {
-    getDeviceLocation().then(() => console.log("Got Device Location"));
+    const getLocationFromCookies = () => {
+      const cookieCountryCode = getCountryCode();
+      if (cookieCountryCode === null) {
+        console.log("No Country Code in Cookies");
+        return;
+      }
+
+      getCountryName(cookieCountryCode).then((countryName) => {
+        setQueryValue(stringifyLocation(getCity(), countryName));
+      });
+    };
+
+    getLocationFromCookies();
   }, []); // Empty dependency array ensures this effect runs only once on initial load
+
+  const stringifyLocation = (city, countryName) => `${city}, ${countryName}`;
+
+  const getCountryName = async (countryCode) => {
+    try {
+      const response = await geonames.countryInfo({
+        country: countryCode,
+      });
+      if (response && response.geonames && response.geonames.length > 0) {
+        return response.geonames[0].countryName;
+      } else {
+        return null;
+      }
+    } catch (error) {
+      console.error("Error fetching country name:", error);
+      return null;
+    }
+  };
 
   const getDeviceLocation = async () => {
     // Check if geolocation is supported by the browser
@@ -36,8 +72,20 @@ const LocationBar = () => {
               featureClass: "P",
             });
             if (response && response.geonames && response.geonames.length > 0) {
-              const userLocation = `${response.geonames[0].name}, ${response.geonames[0].countryName}`;
+              const userLocation = stringifyLocation(
+                response.geonames[0].name,
+                response.geonames[0].countryName,
+              );
               setQueryValue(userLocation);
+
+              updateLocation(
+                response.geonames[0].name,
+                response.geonames[0].countryCode,
+              ).then(() => {
+                console.log(
+                  "Updated Location From Device Location Button for Adhan Data",
+                );
+              });
             }
           } catch (error) {
             console.error("Error fetching user location:", error);
@@ -85,17 +133,32 @@ const LocationBar = () => {
   const handleLocationSelect = (selectedLocation) => {
     setQueryValue(selectedLocation.label);
     setLocationOptions([]);
-    // console.log("Selected Option:", selectedLocation);
+    console.log("Selected Location:", selectedLocation);
+
+    updateLocation(
+      selectedLocation.value.city,
+      selectedLocation.value.countryCode,
+    ).then(() => {
+      console.log("Updated Location From Location Bar for Adhan Data");
+    });
   };
 
   return (
-    <SearchBar
-      placeholder={"Set your location..."}
-      searchValue={queryValue}
-      onSearchChange={handleQueryChange}
-      options={locationOptions}
-      onOptionSelect={handleLocationSelect}
-    />
+    <Flex gap={"3"} wrap={"nowrap"} align={"center"} justify={"center"}>
+      <SearchBar
+        placeholder={"Set your Location to view Prayer Times..."}
+        searchValue={queryValue}
+        onSearchChange={handleQueryChange}
+        options={locationOptions}
+        onOptionSelect={handleLocationSelect}
+      />
+      {/*TODO - Give Label to Icon Button*/}
+      <Tooltip content={"Use Device Location"}>
+        <IconButton size={"3"} variant={"soft"} onClick={getDeviceLocation}>
+          <PaperPlaneIcon width={iconSize} height={iconSize} />
+        </IconButton>
+      </Tooltip>
+    </Flex>
   );
 };
 

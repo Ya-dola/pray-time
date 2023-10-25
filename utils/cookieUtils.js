@@ -3,7 +3,7 @@ import Cookies from "js-cookie";
 const COOKIENUM = {
   API_RESULTS_DATE: "api_results_date",
   CITY: "city",
-  COUNTRY: "country",
+  COUNTRY_CODE: "country_code",
   METHOD: "method",
   UPDATE_RATE: "update_rate",
 };
@@ -15,10 +15,10 @@ export const getCity = () => {
   return sanitizeString(input) || null;
 };
 
-export const setCountry = async (value) =>
-  Cookies.set(COOKIENUM.COUNTRY, value, { expires: 90 });
-export const getCountry = () => {
-  const input = Cookies.get(COOKIENUM.COUNTRY);
+export const setCountryCode = async (value) =>
+  Cookies.set(COOKIENUM.COUNTRY_CODE, value, { expires: 90 });
+export const getCountryCode = () => {
+  const input = Cookies.get(COOKIENUM.COUNTRY_CODE);
   return sanitizeString(input) || null;
 };
 

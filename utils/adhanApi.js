@@ -1,11 +1,11 @@
 import {
   getApiResDate,
   getCity,
-  getCountry,
+  getCountryCode,
   getMethod,
   setApiResDate,
   setCity,
-  setCountry,
+  setCountryCode,
   setMethod,
   setUpdateRate,
 } from "@/utils/cookieUtils";
@@ -36,7 +36,7 @@ export const updateMethod = async (methodParam) => {
 
 export const updateLocation = async (cityParam, countryParam) => {
   setCity(cityParam).then(() =>
-    setCountry(countryParam).then(() => fetchAdhanData()),
+    setCountryCode(countryParam).then(() => fetchAdhanData()),
   );
 };
 
@@ -44,7 +44,7 @@ export const fetchAdhanData = async () => {
   try {
     const response = await fetch(
       `${API_BASE_URL}/${getFormattedDate()}?city=${getCity()}` +
-        `&country=${getCountry()}&method=${getMethod()}`,
+        `&country=${getCountryCode()}&method=${getMethod()}`,
     );
 
     if (response.ok) {
