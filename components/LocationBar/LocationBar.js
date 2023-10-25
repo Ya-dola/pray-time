@@ -10,6 +10,10 @@ const geonames = Geonames({
   encoding: "JSON",
 });
 
+const unwantedCountries = process.env.NEXT_PUBLIC_UNWANTED_COUNTRIES
+  ? JSON.parse(process.env.NEXT_PUBLIC_UNWANTED_COUNTRIES)
+  : [];
+
 const LocationBar = () => {
   const [inputValue, setInputValue] = useState("");
   const [locationOptions, setLocationOptions] = useState([]);
@@ -19,6 +23,10 @@ const LocationBar = () => {
   const locationInputRef = useRef(null);
 
   useEffect(() => {
+    getDeviceLocation();
+  }, []); // Empty dependency array ensures this effect runs only once on initial load
+
+  const getDeviceLocation = () => {
     // Check if geolocation is supported by the browser
     if ("geolocation" in navigator) {
       // Attempt to get the user's current position from device
@@ -45,7 +53,7 @@ const LocationBar = () => {
         },
       );
     }
-  }, []); // Empty dependency array ensures this effect runs only once on initial load
+  };
 
   const fetchLocations = async (inputValue) => {
     try {
@@ -55,13 +63,16 @@ const LocationBar = () => {
         featureClass: "P",
         maxRows: 10, // Limit the results to the top 10
       });
-      const queryLocations = response.geonames.slice(0, 10).map((location) => ({
-        label: `${location.name}, ${location.countryName}`,
-        value: {
-          city: location.name,
-          countryCode: location.countryCode,
-        },
-      }));
+      const queryLocations = response.geonames
+        .filter((location) => !unwantedCountries.includes(location.countryCode))
+        .slice(0, 10)
+        .map((location) => ({
+          label: `${location.name}, ${location.countryName}`,
+          value: {
+            city: location.name,
+            countryCode: location.countryCode,
+          },
+        }));
       setLocationOptions(queryLocations);
     } catch (error) {
       console.error("Error fetching locations:", error);
