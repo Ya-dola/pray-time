@@ -1,8 +1,6 @@
-import { Fragment, useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Geonames from "geonames.js";
-import { Card, Separator, TextField } from "@radix-ui/themes";
-import { GlobeIcon } from "@radix-ui/react-icons";
-import styles from "./LocationBar.module.css";
+import SearchBar from "@/components/SearchBar/SearchBar";
 
 const geonames = Geonames({
   username: process.env.NEXT_PUBLIC_GEONAMES_USERNAME,
@@ -15,24 +13,21 @@ const unwantedCountries = process.env.NEXT_PUBLIC_UNWANTED_COUNTRIES
   : [];
 
 const LocationBar = () => {
-  const [inputValue, setInputValue] = useState("");
+  const [queryValue, setQueryValue] = useState("");
   const [locationOptions, setLocationOptions] = useState([]);
-  const [selectedLocationIndex, setSelectedLocationIndex] = useState(-1);
-  const [selectedLocation, setSelectedLocation] = useState(null);
-  const [isFocused, setIsFocused] = useState(false);
-  const locationInputRef = useRef(null);
 
   useEffect(() => {
-    getDeviceLocation();
+    getDeviceLocation().then(() => console.log("Got Device Location"));
   }, []); // Empty dependency array ensures this effect runs only once on initial load
 
-  const getDeviceLocation = () => {
+  const getDeviceLocation = async () => {
     // Check if geolocation is supported by the browser
     if ("geolocation" in navigator) {
-      // Attempt to get the user's current position from device
+      // Attempt to get the user's current position from the device
       navigator.geolocation.getCurrentPosition(
         async (position) => {
           const { latitude, longitude } = position.coords;
+
           try {
             // noinspection JSCheckFunctionSignatures
             const response = await geonames.findNearbyPlaceName({
@@ -42,7 +37,7 @@ const LocationBar = () => {
             });
             if (response && response.geonames && response.geonames.length > 0) {
               const userLocation = `${response.geonames[0].name}, ${response.geonames[0].countryName}`;
-              setInputValue(userLocation);
+              setQueryValue(userLocation);
             }
           } catch (error) {
             console.error("Error fetching user location:", error);
@@ -63,6 +58,7 @@ const LocationBar = () => {
         featureClass: "P",
         maxRows: 10, // Limit the results to the top 10
       });
+
       const queryLocations = response.geonames
         .filter((location) => !unwantedCountries.includes(location.countryCode))
         .slice(0, 10)
@@ -73,102 +69,33 @@ const LocationBar = () => {
             countryCode: location.countryCode,
           },
         }));
+
       setLocationOptions(queryLocations);
     } catch (error) {
       console.error("Error fetching locations:", error);
     }
   };
 
-  const handleInputChange = (inputValue) => {
-    // Open the options list if typing
-    if (!isFocused) setIsFocused(true);
-
-    setInputValue(inputValue);
-    setSelectedLocationIndex(-1);
-    fetchLocations(inputValue).then(() =>
-      console.log("Fetch Locations:", inputValue),
-    );
+  const handleQueryChange = (value) => {
+    setQueryValue(value);
+    fetchLocations(value);
+    // .then(() => console.log("Fetch Locations:", value));
   };
 
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter" || e.key === "Tab") {
-      if (locationOptions.length > 0) {
-        handleLocationSelect(
-          locationOptions[
-            selectedLocationIndex === -1 ? 0 : selectedLocationIndex
-          ],
-          selectedLocationIndex === -1 ? 0 : selectedLocationIndex,
-        );
-      }
-    } else if (e.key === "ArrowDown") {
-      setSelectedLocationIndex((prevIndex) =>
-        prevIndex < locationOptions.length - 1 ? prevIndex + 1 : prevIndex,
-      );
-    } else if (e.key === "ArrowUp") {
-      setSelectedLocationIndex((prevIndex) =>
-        prevIndex > 0 ? prevIndex - 1 : 0,
-      );
-    }
-  };
-
-  const handleLocationSelect = (selected, index) => {
-    setInputValue(selected.label); // Update the input field value
-    setSelectedLocation(selected);
-    setIsFocused(false); // Close the options list
+  const handleLocationSelect = (selectedLocation) => {
+    setQueryValue(selectedLocation.label);
     setLocationOptions([]);
-    setSelectedLocationIndex(index);
-    console.log("Selected Option:", selected);
-    console.log("Selected Index:", index);
+    // console.log("Selected Option:", selectedLocation);
   };
 
   return (
-    <div className={styles.container}>
-      <TextField.Root variant={"soft"} size={"3"} radius={"full"}>
-        <TextField.Slot>
-          <GlobeIcon width={28} height={28} />
-        </TextField.Slot>
-        <TextField.Input
-          placeholder="Set your location..."
-          value={inputValue}
-          onChange={(e) => handleInputChange(e.target.value)}
-          onKeyDown={handleKeyDown}
-          onFocus={() => {
-            setIsFocused(true);
-            if (locationInputRef.current) locationInputRef.current.select(); // Select all text when focused
-          }}
-          onBlur={() => {
-            setIsFocused(false);
-            setLocationOptions([]);
-            setSelectedLocationIndex(-1);
-          }}
-          ref={locationInputRef}
-        />
-      </TextField.Root>
-
-      {isFocused && locationOptions.length > 0 && (
-        <Card className={styles.popover}>
-          <ul>
-            {locationOptions.map((option, index) => (
-              <Fragment key={index}>
-                <p
-                  data-selected={index === selectedLocationIndex}
-                  onMouseDown={(e) => {
-                    e.preventDefault(); // Prevent input field from losing focus
-                    handleLocationSelect(option, index);
-                  }}
-                  onMouseEnter={() => setSelectedLocationIndex(-1)}
-                >
-                  {option.label}
-                </p>
-                {index < locationOptions.length - 1 && (
-                  <Separator orientation="horizontal" size="4" />
-                )}
-              </Fragment>
-            ))}
-          </ul>
-        </Card>
-      )}
-    </div>
+    <SearchBar
+      placeholder={"Set your location..."}
+      searchValue={queryValue}
+      onSearchChange={handleQueryChange}
+      options={locationOptions}
+      onOptionSelect={handleLocationSelect}
+    />
   );
 };
 

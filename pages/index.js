@@ -1,12 +1,12 @@
-import PushToastLayout from "@/components/PushToastLayout";
-import TimerNotif from "@/components/TimerNotif";
-import ThemeButton from "@/components/ThemeButton";
-import Layout from "@/components/Layout/Layout";
-import { showNotification } from "@/utils/notifications";
-import PrayerCard from "@/components/PrayerCard/PrayerCard";
-import { PRAYER_TIMINGS } from "@/utils/adhanApi";
 import { Flex } from "@radix-ui/themes";
+import Layout from "@/components/Layout/Layout";
+import ThemeButton from "@/components/ThemeButton";
+import TimerNotif from "@/components/TimerNotif";
+import PushToastLayout from "@/components/PushToastLayout";
+import { showNotification } from "@/utils/notifications";
+import { PRAYER_TIMINGS } from "@/utils/adhanApi";
 import LocationBar from "@/components/LocationBar/LocationBar";
+import PrayerCard from "@/components/PrayerCard/PrayerCard";
 
 const metadata = { title: "Home", description: "Home Page" };
 
