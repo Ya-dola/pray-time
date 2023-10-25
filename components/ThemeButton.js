@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 const ThemeButton = () => {
   const { theme, setTheme } = useTheme();
+  const iconSize = 20;
 
   // Mount is for Hydration Checks for theme to work properly
   const [mounted, setMounted] = useState(false);
@@ -20,8 +21,12 @@ const ThemeButton = () => {
 
   return (
     <div>
-      <IconButton onClick={changeTheme}>
-        {theme === "light" ? <MoonIcon /> : <SunIcon />}
+      <IconButton variant={"surface"} onClick={changeTheme}>
+        {theme === "light" ? (
+          <MoonIcon width={iconSize} height={iconSize} />
+        ) : (
+          <SunIcon width={iconSize} height={iconSize} />
+        )}
       </IconButton>
     </div>
   );

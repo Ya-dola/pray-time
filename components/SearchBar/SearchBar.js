@@ -50,7 +50,7 @@ const SearchBar = ({
   return (
     <div className={styles.container}>
       <TextField.Root variant={"soft"} size={"3"} radius={"full"}>
-        <TextField.Slot>
+        <TextField.Slot color={"default"}>
           <GlobeIcon width={iconSize} height={iconSize} />
         </TextField.Slot>
         <TextField.Input
