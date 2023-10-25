@@ -1,7 +1,7 @@
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import { updatePrayTimesForDay } from "@/utils/adhanApi";
 import { getUpdateRate } from "@/utils/cookieUtils";
-import { useSelector } from "react-redux";
 
 const DailyPrayTimesUpdater = () => {
   const adhanData = useSelector((state) => state.adhanData);
@@ -13,6 +13,8 @@ const DailyPrayTimesUpdater = () => {
       },
       getUpdateRate() * 60 * 1000,
     );
+
+    console.log("Daily Prayer Time Updater - Updated");
 
     // Clear the interval when the component unmounts
     // noinspection JSCheckFunctionSignatures

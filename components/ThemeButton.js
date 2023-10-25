@@ -1,7 +1,7 @@
-import { useTheme } from "next-themes";
-import { IconButton } from "@radix-ui/themes";
-import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 import { useEffect, useState } from "react";
+import { useTheme } from "next-themes";
+import { IconButton, Tooltip } from "@radix-ui/themes";
+import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 
 const ThemeButton = () => {
   const { theme, setTheme } = useTheme();
@@ -21,13 +21,16 @@ const ThemeButton = () => {
 
   return (
     <div>
-      <IconButton variant={"surface"} onClick={changeTheme}>
-        {theme === "light" ? (
-          <MoonIcon width={iconSize} height={iconSize} />
-        ) : (
-          <SunIcon width={iconSize} height={iconSize} />
-        )}
-      </IconButton>
+      {/*TODO - Give Label to Icon Button*/}
+      <Tooltip content={"Change Theme"}>
+        <IconButton variant={"surface"} onClick={changeTheme}>
+          {theme === "light" ? (
+            <MoonIcon width={iconSize} height={iconSize} />
+          ) : (
+            <SunIcon width={iconSize} height={iconSize} />
+          )}
+        </IconButton>
+      </Tooltip>
     </div>
   );
 };
