@@ -34,6 +34,7 @@ const MyApp = ({ Component, pageProps }) => {
           radius={"large"}
           grayColor={"mauve"}
           scaling={"110%"}
+          panelBackground={"translucent"}
         >
           <DailyPrayTimes />
           <Component {...pageProps} />

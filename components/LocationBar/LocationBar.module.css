@@ -1,0 +1,33 @@
+.container {
+    position: relative;
+}
+
+.popover {
+    position: absolute;
+    top: 125%; /* Position the popover below the input field */
+    left: 3.4%;
+    border: 1px solid var(--color-background);
+    z-index: 20; /* Ensure the popover appears above other elements */
+    width: max-content;
+}
+
+.popover ul {
+    list-style: none;
+    padding: 0;
+}
+
+.popover p {
+    margin: 0;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    color: var(--accent-12);
+}
+
+.popover p:hover {
+    background-color: var(--color-selection-root); /* Highlight on hover */
+}
+
+.popover p[data-selected="true"] {
+    /* Highlight the selected option via keyboard*/
+    background-color: var(--color-selection-root);
+}

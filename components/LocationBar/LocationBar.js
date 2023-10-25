@@ -1,7 +1,8 @@
-import { useEffect, useRef, useState } from "react";
+import { Fragment, useEffect, useRef, useState } from "react";
 import Geonames from "geonames.js";
-import { TextField } from "@radix-ui/themes";
+import { Card, Separator, TextField } from "@radix-ui/themes";
 import { GlobeIcon } from "@radix-ui/react-icons";
+import styles from "./LocationBar.module.css";
 
 const geonames = Geonames({
   username: process.env.NEXT_PUBLIC_GEONAMES_USERNAME,
@@ -12,6 +13,7 @@ const geonames = Geonames({
 const LocationBar = () => {
   const [inputValue, setInputValue] = useState("");
   const [locationOptions, setLocationOptions] = useState([]);
+  const [selectedLocationIndex, setSelectedLocationIndex] = useState(-1);
   const [selectedLocation, setSelectedLocation] = useState(null);
   const [isFocused, setIsFocused] = useState(false);
   const locationInputRef = useRef(null);
@@ -24,6 +26,7 @@ const LocationBar = () => {
         async (position) => {
           const { latitude, longitude } = position.coords;
           try {
+            // noinspection JSCheckFunctionSignatures
             const response = await geonames.findNearbyPlaceName({
               lat: latitude,
               lng: longitude,
@@ -70,20 +73,45 @@ const LocationBar = () => {
     if (!isFocused) setIsFocused(true);
 
     setInputValue(inputValue);
+    setSelectedLocationIndex(-1);
     fetchLocations(inputValue).then(() =>
       console.log("Fetch Locations:", inputValue),
     );
   };
 
-  const handleLocationSelect = (selected) => {
+  const handleKeyDown = (e) => {
+    if (e.key === "Enter" || e.key === "Tab") {
+      if (locationOptions.length > 0) {
+        handleLocationSelect(
+          locationOptions[
+            selectedLocationIndex === -1 ? 0 : selectedLocationIndex
+          ],
+          selectedLocationIndex === -1 ? 0 : selectedLocationIndex,
+        );
+      }
+    } else if (e.key === "ArrowDown") {
+      setSelectedLocationIndex((prevIndex) =>
+        prevIndex < locationOptions.length - 1 ? prevIndex + 1 : prevIndex,
+      );
+    } else if (e.key === "ArrowUp") {
+      setSelectedLocationIndex((prevIndex) =>
+        prevIndex > 0 ? prevIndex - 1 : 0,
+      );
+    }
+  };
+
+  const handleLocationSelect = (selected, index) => {
     setInputValue(selected.label); // Update the input field value
     setSelectedLocation(selected);
     setIsFocused(false); // Close the options list
+    setLocationOptions([]);
+    setSelectedLocationIndex(index);
     console.log("Selected Option:", selected);
+    console.log("Selected Index:", index);
   };
 
   return (
-    <div>
+    <div className={styles.container}>
       <TextField.Root variant={"soft"} size={"3"} radius={"full"}>
         <TextField.Slot>
           <GlobeIcon width={28} height={28} />
@@ -92,11 +120,7 @@ const LocationBar = () => {
           placeholder="Set your location..."
           value={inputValue}
           onChange={(e) => handleInputChange(e.target.value)}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === "Tab")
-              if (locationOptions.length > 0)
-                handleLocationSelect(locationOptions[0]);
-          }}
+          onKeyDown={handleKeyDown}
           onFocus={() => {
             setIsFocused(true);
             if (locationInputRef.current) locationInputRef.current.select(); // Select all text when focused
@@ -104,25 +128,34 @@ const LocationBar = () => {
           onBlur={() => {
             setIsFocused(false);
             setLocationOptions([]);
+            setSelectedLocationIndex(-1);
           }}
           ref={locationInputRef}
         />
       </TextField.Root>
 
-      {isFocused && (
-        <ul>
-          {locationOptions.map((option, index) => (
-            <li
-              key={index}
-              onMouseDown={(e) => {
-                e.preventDefault(); // Prevent input field from losing focus
-                handleLocationSelect(option);
-              }}
-            >
-              {option.label}
-            </li>
-          ))}
-        </ul>
+      {isFocused && locationOptions.length > 0 && (
+        <Card className={styles.popover}>
+          <ul>
+            {locationOptions.map((option, index) => (
+              <Fragment key={index}>
+                <p
+                  data-selected={index === selectedLocationIndex}
+                  onMouseDown={(e) => {
+                    e.preventDefault(); // Prevent input field from losing focus
+                    handleLocationSelect(option, index);
+                  }}
+                  onMouseEnter={() => setSelectedLocationIndex(-1)}
+                >
+                  {option.label}
+                </p>
+                {index < locationOptions.length - 1 && (
+                  <Separator orientation="horizontal" size="4" />
+                )}
+              </Fragment>
+            ))}
+          </ul>
+        </Card>
       )}
     </div>
   );

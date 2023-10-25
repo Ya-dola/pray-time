@@ -6,7 +6,7 @@ import { showNotification } from "@/utils/notifications";
 import PrayerCard from "@/components/PrayerCard/PrayerCard";
 import { PRAYER_TIMINGS } from "@/utils/adhanApi";
 import { Flex } from "@radix-ui/themes";
-import LocationBar from "@/components/LocationBar";
+import LocationBar from "@/components/LocationBar/LocationBar";
 
 const metadata = { title: "Home", description: "Home Page" };
 
@@ -32,6 +32,7 @@ const Home = () => {
         >
           Trigger Notification
         </button>
+
         <TimerNotif
           title={"Timer Notification"}
           message={"Timer Test Message In TIME"}
@@ -44,8 +45,8 @@ const Home = () => {
           hours={18}
           minutes={18}
         />
-        <ThemeButton />
 
+        <ThemeButton />
         <LocationBar />
 
         <PrayerCard prayerName={PRAYER_TIMINGS.FAJR} />
