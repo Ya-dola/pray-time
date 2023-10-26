@@ -8,6 +8,7 @@ import styles from "./index.module.css";
 
 const metadata = { title: "Pray Time", description: "App Page" };
 
+// TODO - FIX Responsive Sizes Everywhere
 const Index = () => {
   const TABS = {
     HOME: "home",
@@ -37,15 +38,15 @@ const Index = () => {
           </Flex>
           <ThemeControl className={styles.tabThemeBtn} size={"3"} />
         </Tabs.List>
-        <Container py={"4"}>
+
+        <Box py={"4"}>
           <Tabs.Content value={TABS.HOME}>
             <Home />
           </Tabs.Content>
-          <Tabs.Content value={TABS.SETTINGS}>
+          <Tabs.Content value={TABS.SETTINGS} className={styles.settingsTab}>
             <Settings />
-            {/*TODO - FIX Height Size*/}
           </Tabs.Content>
-        </Container>
+        </Box>
       </Tabs.Root>
     </Layout>
   );

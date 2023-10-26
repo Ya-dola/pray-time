@@ -14,3 +14,7 @@
     /*align-self: center;*/
 }
 
+.settingsTab {
+    min-height: 80vh;
+}
+

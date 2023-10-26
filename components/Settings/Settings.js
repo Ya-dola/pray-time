@@ -13,18 +13,20 @@ import styles from "./Settings.module.css";
 
 const Settings = () => {
   return (
-    <Card size={"3"}>
+    <Card size={"3"} className={styles.card}>
       {/*TODO - Fix Card Sizing to look like an actual card*/}
-      <Flex gap={"4"} direction={"column"} wrap={"nowrap"}>
-        <Heading as={"h2"} size={"7"}>
-          Settings
-        </Heading>
-        <Blockquote size={"2"} className={styles.blockQuote}>
-          Adjust your Preferences Here
-        </Blockquote>
-        <Inset py={"current"} mb={"4"}>
-          <Separator orientation={"horizontal"} size={"4"} />
-        </Inset>
+      <div className={styles.cardLayout}>
+        <Flex gap={"4"} direction={"column"} wrap={"nowrap"}>
+          <Heading as={"h2"} size={"7"}>
+            Settings
+          </Heading>
+          <Blockquote size={"2"} className={styles.blockQuote}>
+            Adjust your Preferences Here
+          </Blockquote>
+          <Inset py={"current"} mb={"4"}>
+            <Separator orientation={"horizontal"} size={"4"} />
+          </Inset>
+        </Flex>
 
         <Flex gap={"8"} wrap={"nowrap"} justify={"between"}>
           <Text as={"label"} size={"3"}>
@@ -48,7 +50,7 @@ const Settings = () => {
           <Separator orientation={"horizontal"} size={"4"} />
         </Inset>
         {/*TODO - Add Notifications Frequency Component*/}
-      </Flex>
+      </div>
     </Card>
   );
 };

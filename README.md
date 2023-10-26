@@ -85,3 +85,7 @@ Prayer Time Reminder PWA built with Next.js, React, Supabase, and Local Notifica
 
 - [Search](https://www.geonames.org/export/geonames-search.html)
 - [FindNearbyPlaceName](https://www.geonames.org/export/web-services.html#findNearbyPlaceName)
+
+###### Useful Sites
+
+- [Hexadecimal Transparency](https://gist.github.com/lopspower/03fb1cc0ac9f32ef38f4)

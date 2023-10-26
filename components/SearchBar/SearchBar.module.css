@@ -11,6 +11,7 @@
     z-index: 20; /* Ensure the popover appears above other elements */
     width: max-content;
     max-width: 86%;
+    background-color: var(--gray-2);
 }
 
 .popover ul {

@@ -44,7 +44,8 @@ const ThemeControl = ({ version = "icon", className, size = "2" }) => {
       <div className={className}>
         <Flex
           gap={"3"}
-          wrap={"nowrap"}
+          wrap={"wrap"}
+          justify={"center"}
           onClick={changeTheme}
           className={styles.clickable}
         >
