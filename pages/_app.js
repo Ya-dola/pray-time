@@ -6,6 +6,7 @@ import DailyPrayTimes from "@/components/DailyPrayTimes";
 import "react-toastify/dist/ReactToastify.css";
 import { Provider } from "react-redux";
 import { store } from "@/redux/store";
+import "@/styles/radixThemeConfig.css";
 
 const MyApp = ({ Component, pageProps }) => {
   // Service Worker Connection

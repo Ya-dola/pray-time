@@ -1,62 +1,54 @@
-import { Flex } from "@radix-ui/themes";
+import { Box, Container, Flex, Tabs } from "@radix-ui/themes";
+import { GearIcon, HomeIcon } from "@radix-ui/react-icons";
 import Layout from "@/components/Layout/Layout";
+import Home from "@/components/Home/Home";
+import Settings from "@/components/Settings/Settings";
+import styles from "./index.module.css";
 import ThemeButton from "@/components/ThemeButton";
-import TimerNotif from "@/components/TimerNotif";
-import PushToastLayout from "@/components/PushToastLayout";
-import { showNotification } from "@/utils/notifications";
-import { PRAYER_TIMINGS } from "@/utils/adhanApi";
-import LocationBar from "@/components/LocationBar/LocationBar";
-import PrayerCard from "@/components/PrayerCard/PrayerCard";
 
-const metadata = { title: "Home", description: "Home Page" };
+const metadata = { title: "Pray Time", description: "App Page" };
 
-const Home = () => {
+const Index = () => {
+  const TABS = {
+    HOME: "home",
+    SETTINGS: "settings",
+  };
+
+  const iconSize = 26;
+
   return (
     <Layout metadata={metadata}>
-      <Flex gap={"4"} direction={"column"} wrap={"nowrap"}>
-        <PushToastLayout title="Pray Toast Time" message="Test Body Message">
-          {(showToast) => (
-            <>
-              <button onClick={() => showToast()}>Trigger Toast</button>
-            </>
-          )}
-        </PushToastLayout>
-        <div>Hello</div>
-        <button
-          onClick={() =>
-            showNotification(
-              "Pray Notif Time",
-              "Are you sure you want to miss your prayer??",
-            )
-          }
-        >
-          Trigger Notification
-        </button>
-
-        <TimerNotif
-          title={"Timer Notification"}
-          message={"Timer Test Message In TIME"}
-          hours={12}
-          minutes={53}
-        />
-        <TimerNotif
-          title={"Timer Notification 2"}
-          message={"Timer Test Message without facts"}
-          hours={18}
-          minutes={18}
-        />
-
-        <ThemeButton />
-        <LocationBar />
-
-        <PrayerCard prayerName={PRAYER_TIMINGS.FAJR} />
-        <PrayerCard prayerName={PRAYER_TIMINGS.DHUHR} />
-        <PrayerCard prayerName={PRAYER_TIMINGS.ASR} />
-        <PrayerCard prayerName={PRAYER_TIMINGS.MAGHRIB} />
-        <PrayerCard prayerName={PRAYER_TIMINGS.ISHA} />
-      </Flex>
+      <Tabs.Root defaultValue={"home"}>
+        <Tabs.List className={styles.tabList}>
+          <div className={styles.tabLeftSpace}></div>
+          <Flex gap={"9"} wrap={"nowrap"}>
+            <Tabs.Trigger value={"home"}>
+              <Flex gap={"3"} align={"center"} justify={"center"}>
+                <HomeIcon width={iconSize} height={iconSize} />
+                Home
+              </Flex>
+            </Tabs.Trigger>
+            <Tabs.Trigger value={TABS.SETTINGS}>
+              <Flex gap={"3"} align={"center"} justify={"center"}>
+                <GearIcon width={iconSize} height={iconSize} />
+                Settings
+              </Flex>
+            </Tabs.Trigger>
+          </Flex>
+          <ThemeButton className={styles.tabThemeBtn} size={"3"} />
+        </Tabs.List>
+        <Container py={"4"}>
+          <Tabs.Content value={TABS.HOME}>
+            <Home />
+          </Tabs.Content>
+          <Tabs.Content value={TABS.SETTINGS}>
+            <Settings />
+            {/*TODO - FIX Height Size*/}
+          </Tabs.Content>
+        </Container>
+      </Tabs.Root>
     </Layout>
   );
 };
 
-export default Home;
+export default Index;

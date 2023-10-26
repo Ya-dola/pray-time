@@ -1,0 +1,16 @@
+.tabList {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: center;
+    height: var(--space-8);
+}
+
+.tabLeftSpace {
+    margin-right: auto;
+}
+
+.tabThemeBtn {
+    margin-left: auto;
+    /*align-self: center;*/
+}
+

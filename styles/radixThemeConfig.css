@@ -1,0 +1,5 @@
+/*Override Default Radix Theme Values*/
+
+.rt-TabsTrigger:where([data-state='active']) {
+    color: var(--accent-12);
+}

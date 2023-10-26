@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Flex, IconButton, Tooltip } from "@radix-ui/themes";
+import { Button, Flex, IconButton, Text, Tooltip } from "@radix-ui/themes";
 import { PaperPlaneIcon } from "@radix-ui/react-icons";
 import Geonames from "geonames.js";
 import SearchBar from "@/components/SearchBar/SearchBar";
@@ -19,8 +19,7 @@ const unwantedCountries = process.env.NEXT_PUBLIC_UNWANTED_COUNTRIES
 const LocationBar = () => {
   const [queryValue, setQueryValue] = useState("");
   const [locationOptions, setLocationOptions] = useState([]);
-
-  const iconSize = 20;
+  const iconSize = 22;
 
   useEffect(() => {
     const getLocationFromCookies = () => {
@@ -144,7 +143,15 @@ const LocationBar = () => {
   };
 
   return (
-    <Flex gap={"3"} wrap={"nowrap"} align={"center"} justify={"center"}>
+    <Flex gap={"4"} direction={"column"} wrap={"nowrap"}>
+      <Flex gap={"3"} wrap={"nowrap"} align={"start"} justify={"between"}>
+        <Text as={"label"} size={"3"}>
+          Location
+        </Text>
+        <Button size={"2"} variant={"soft"} onClick={getDeviceLocation}>
+          Device Location <PaperPlaneIcon width={iconSize} height={iconSize} />
+        </Button>
+      </Flex>
       <SearchBar
         placeholder={"Set your Location to view Prayer Times..."}
         searchValue={queryValue}
@@ -152,12 +159,6 @@ const LocationBar = () => {
         options={locationOptions}
         onOptionSelect={handleLocationSelect}
       />
-      {/*TODO - Give Label to Icon Button*/}
-      <Tooltip content={"Use Device Location"}>
-        <IconButton size={"3"} variant={"soft"} onClick={getDeviceLocation}>
-          <PaperPlaneIcon width={iconSize} height={iconSize} />
-        </IconButton>
-      </Tooltip>
     </Flex>
   );
 };

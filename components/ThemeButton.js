@@ -3,9 +3,9 @@ import { useTheme } from "next-themes";
 import { IconButton, Tooltip } from "@radix-ui/themes";
 import { MoonIcon, SunIcon } from "@radix-ui/react-icons";
 
-const ThemeButton = () => {
+const ThemeButton = ({ className, size = "2" }) => {
   const { theme, setTheme } = useTheme();
-  const iconSize = 20;
+  const iconSize = 22;
 
   // Mount is for Hydration Checks for theme to work properly
   const [mounted, setMounted] = useState(false);
@@ -20,10 +20,10 @@ const ThemeButton = () => {
   };
 
   return (
-    <div>
+    <div className={className}>
       {/*TODO - Give Label to Icon Button*/}
       <Tooltip content={"Change Theme"}>
-        <IconButton variant={"surface"} onClick={changeTheme}>
+        <IconButton variant={"soft"} size={size} onClick={changeTheme}>
           {theme === "light" ? (
             <MoonIcon width={iconSize} height={iconSize} />
           ) : (
