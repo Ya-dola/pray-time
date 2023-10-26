@@ -144,7 +144,7 @@ const LocationBar = () => {
 
   return (
     <Flex gap={"4"} direction={"column"} wrap={"nowrap"}>
-      <Flex gap={"3"} wrap={"nowrap"} align={"start"} justify={"between"}>
+      <Flex gap={"8"} wrap={"nowrap"} align={"start"} justify={"between"}>
         <Text as={"label"} size={"3"}>
           Location
         </Text>

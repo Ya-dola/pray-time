@@ -3,8 +3,8 @@ import { GearIcon, HomeIcon } from "@radix-ui/react-icons";
 import Layout from "@/components/Layout/Layout";
 import Home from "@/components/Home/Home";
 import Settings from "@/components/Settings/Settings";
+import ThemeControl from "@/components/ThemeControl/ThemeControl";
 import styles from "./index.module.css";
-import ThemeButton from "@/components/ThemeButton";
 
 const metadata = { title: "Pray Time", description: "App Page" };
 
@@ -35,7 +35,7 @@ const Index = () => {
               </Flex>
             </Tabs.Trigger>
           </Flex>
-          <ThemeButton className={styles.tabThemeBtn} size={"3"} />
+          <ThemeControl className={styles.tabThemeBtn} size={"3"} />
         </Tabs.List>
         <Container py={"4"}>
           <Tabs.Content value={TABS.HOME}>

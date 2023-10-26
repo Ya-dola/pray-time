@@ -3,3 +3,11 @@
 .rt-TabsTrigger:where([data-state='active']) {
     color: var(--accent-12);
 }
+
+.rt-BaseButton {
+    cursor: pointer;
+}
+
+.radix-themes {
+    --cursor-switch: pointer;
+}
