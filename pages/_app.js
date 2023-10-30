@@ -34,7 +34,7 @@ const MyApp = ({ Component, pageProps }) => {
           accentColor={"plum"}
           radius={"large"}
           grayColor={"mauve"}
-          scaling={"110%"}
+          // scaling={"110%"} - Moved to CSS Config
           panelBackground={"translucent"}
         >
           <DailyPrayTimes />

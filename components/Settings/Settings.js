@@ -14,7 +14,6 @@ import styles from "./Settings.module.css";
 const Settings = () => {
   return (
     <Card size={"3"} className={styles.card}>
-      {/*TODO - Fix Card Sizing to look like an actual card*/}
       <div className={styles.cardLayout}>
         <Flex gap={"4"} direction={"column"} wrap={"nowrap"}>
           <Heading as={"h2"} size={"7"}>
@@ -28,7 +27,7 @@ const Settings = () => {
           </Inset>
         </Flex>
 
-        <Flex gap={"8"} wrap={"nowrap"} justify={"between"}>
+        <Flex gap={"2"} wrap={"nowrap"} justify={"between"}>
           <Text as={"label"} size={"3"}>
             Theme
           </Text>

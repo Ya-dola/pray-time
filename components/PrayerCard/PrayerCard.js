@@ -21,7 +21,7 @@ const PrayerCard = ({ prayerName }) => {
     <Card asChild>
       <button>
         <Flex gap={"4"} align={"center"} justify={"center"}>
-          <Avatar fallback={"ICON"} size={"5"} />
+          <Avatar fallback={"ICON"} size={"6"} />
           <Heading as={"h3"} weight={"medium"}>
             {prayerName}
           </Heading>
