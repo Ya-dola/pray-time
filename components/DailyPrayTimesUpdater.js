@@ -10,6 +10,7 @@ const DailyPrayTimesUpdater = () => {
     const updatePrayTimesIntvl = setInterval(
       () => {
         updatePrayTimesForDay(adhanData);
+        // TODO - ADD Daily Reset things here
       },
       getUpdateRate() * 60 * 1000,
     );

@@ -1,6 +1,6 @@
 import { Button, Flex } from "@radix-ui/themes";
 import PushToastLayout from "@/components/PushToastLayout";
-import TimerNotif from "@/components/TimerNotif";
+import TimerNotif from "@/components/TimerNotif/TimerNotif";
 import PrayerCard from "@/components/PrayerCard/PrayerCard";
 import { showNotification } from "@/utils/notifications";
 import { PRAYER_TIMINGS } from "@/utils/adhanApi";
