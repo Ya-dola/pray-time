@@ -1,5 +1,6 @@
 import {
   Blockquote,
+  Button,
   Card,
   Flex,
   Heading,
@@ -11,7 +12,14 @@ import LocationBar from "@/components/LocationBar/LocationBar";
 import ThemeControl from "@/components/ThemeControl/ThemeControl";
 import styles from "./Settings.module.css";
 
-const Settings = () => {
+const Settings = ({ homeTabRef }) => {
+  const handleSaveBtn = () => {
+    if (homeTabRef.current) {
+      homeTabRef.current.focus();
+      homeTabRef.current.click();
+    }
+  };
+
   return (
     <Card size={"3"} className={styles.card}>
       <div className={styles.cardLayout}>
@@ -49,6 +57,21 @@ const Settings = () => {
           <Separator orientation={"horizontal"} size={"4"} />
         </Inset>
         {/*TODO - Add Notifications Frequency Component*/}
+
+        <Text as={"label"} size={"3"}>
+          Enable Last Third Reminders
+        </Text>
+        <Inset py={"current"} mb={"4"}>
+          <Separator orientation={"horizontal"} size={"4"} />
+        </Inset>
+        {/*TODO - Add Logic for Last Third Reminders*/}
+
+        <Button size={{ initial: "2", sm: "3" }} onClick={handleSaveBtn}>
+          Save Preferences
+        </Button>
+        <Inset py={"current"} mb={"4"}>
+          <Separator orientation={"horizontal"} size={"4"} />
+        </Inset>
       </div>
     </Card>
   );
