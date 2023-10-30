@@ -44,7 +44,7 @@ const Index = () => {
         </Tabs.List>
 
         <Box py={"4"}>
-          <Tabs.Content value={TABS.HOME}>
+          <Tabs.Content value={TABS.HOME} className={styles.homeTab}>
             <Home />
           </Tabs.Content>
           <Tabs.Content value={TABS.SETTINGS} className={styles.settingsTab}>

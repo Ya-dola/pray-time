@@ -10,7 +10,6 @@ import {
 } from "@radix-ui/themes";
 import LocationBar from "@/components/LocationBar/LocationBar";
 import ThemeControl from "@/components/ThemeControl/ThemeControl";
-import styles from "./Settings.module.css";
 import NotifFrequency from "@/components/NotifFrequency/NotifFrequency";
 import SettingsSwitch from "@/components/SettingsSwitch/SettingsSwitch";
 import {
@@ -21,6 +20,7 @@ import {
   setShowLastThird,
   setShowSunrise,
 } from "@/utils/cookieUtils";
+import styles from "./Settings.module.css";
 
 const Settings = ({ homeTabRef }) => {
   const handleSaveBtn = () => {
