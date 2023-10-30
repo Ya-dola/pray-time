@@ -12,6 +12,15 @@ import LocationBar from "@/components/LocationBar/LocationBar";
 import ThemeControl from "@/components/ThemeControl/ThemeControl";
 import styles from "./Settings.module.css";
 import NotifFrequency from "@/components/NotifFrequency/NotifFrequency";
+import SettingsSwitch from "@/components/SettingsSwitch/SettingsSwitch";
+import {
+  getNotifyLastThird,
+  getShowLastThird,
+  getShowSunrise,
+  setNotifyLastThird,
+  setShowLastThird,
+  setShowSunrise,
+} from "@/utils/cookieUtils";
 
 const Settings = ({ homeTabRef }) => {
   const handleSaveBtn = () => {
@@ -62,29 +71,47 @@ const Settings = ({ homeTabRef }) => {
         </Inset>
         {/*TODO - Setup Notifications Frequency Logic for Notifications*/}
 
-        <Text as={"label"} size={"3"}>
-          Show Sunrise Time
-        </Text>
+        <Flex gap={"2"} wrap={"nowrap"} justify={"between"}>
+          <Text as={"label"} size={"3"}>
+            Show Sunrise Time
+          </Text>
+          <SettingsSwitch
+            getSwitchValue={getShowSunrise}
+            setSwitchValue={setShowSunrise}
+          />
+        </Flex>
         <Inset py={"current"} mb={"4"}>
           <Separator orientation={"horizontal"} size={"4"} />
         </Inset>
-        {/*TODO - Add Logic for Showing Sunrise Prayer Card - Use Redux*/}
+        {/*TODO - Add Logic for Showing Sunrise Prayer Card*/}
 
-        <Text as={"label"} size={"3"}>
-          Show Last Third of Night Time
-        </Text>
+        <Flex gap={"2"} wrap={"nowrap"} justify={"between"}>
+          <Text as={"label"} size={"3"}>
+            Show Last Third of Night Time
+          </Text>
+          <SettingsSwitch
+            getSwitchValue={getShowLastThird}
+            setSwitchValue={setShowLastThird}
+          />
+        </Flex>
         <Inset py={"current"} mb={"4"}>
           <Separator orientation={"horizontal"} size={"4"} />
         </Inset>
-        {/*TODO - Add Logic for Last Third Reminders*/}
+        {/*TODO - Add Logic for Showing Last Third Prayer Card*/}
 
-        <Text as={"label"} size={"3"}>
-          Enable Last Third of Night Reminders
-        </Text>
+        <Flex gap={"2"} wrap={"nowrap"} justify={"between"}>
+          <Text as={"label"} size={"3"}>
+            Enable Last Third of Night Notifications
+          </Text>
+          <SettingsSwitch
+            getSwitchValue={getNotifyLastThird}
+            setSwitchValue={setNotifyLastThird}
+          />
+        </Flex>
         <Inset py={"current"} mb={"4"}>
           <Separator orientation={"horizontal"} size={"4"} />
         </Inset>
-        {/*TODO - Add Logic for Last Third Reminders*/}
+        {/*TODO - Add Logic for Last Third Notifications*/}
 
         <Button size={{ initial: "2", sm: "3" }} onClick={handleSaveBtn}>
           Save Preferences

@@ -1,0 +1,7 @@
+.accentColor {
+    color: var(--accent-12);
+}
+
+.clickable {
+    cursor: pointer;
+}

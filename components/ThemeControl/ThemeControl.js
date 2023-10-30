@@ -51,8 +51,8 @@ const ThemeControl = ({ version = "icon", className, size = "2" }) => {
           gap={"3"}
           wrap={"wrap"}
           justify={"center"}
-          onClick={changeTheme}
           className={styles.clickable}
+          onClick={changeTheme}
         >
           <SunIcon
             width={iconSize}
