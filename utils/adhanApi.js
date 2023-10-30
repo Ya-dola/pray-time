@@ -1,9 +1,9 @@
 import {
-  getApiResDate,
+  getApiResultsDate,
   getCity,
   getCountryCode,
   getMethod,
-  setApiResDate,
+  setApiResultsDate,
   setCity,
   setCountryCode,
   setMethod,
@@ -51,7 +51,7 @@ export const fetchAdhanData = async () => {
       const responseData = await response.json();
 
       // Update API response date and update rate
-      await setApiResDate(responseData.data?.date?.gregorian?.date);
+      await setApiResultsDate(responseData.data?.date?.gregorian?.date);
       await setUpdateRate(dailyUpdateRate(responseData.data));
 
       // Dispatch action to update data in Redux store
@@ -77,7 +77,7 @@ export const updatePrayTimesForDay = (data) => {
       fajrTime.min,
     )
   ) {
-    if (getFormattedDate() !== getApiResDate()) fetchAdhanData();
+    if (getFormattedDate() !== getApiResultsDate()) fetchAdhanData();
   }
 };
 

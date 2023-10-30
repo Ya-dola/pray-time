@@ -11,6 +11,7 @@ import {
 import LocationBar from "@/components/LocationBar/LocationBar";
 import ThemeControl from "@/components/ThemeControl/ThemeControl";
 import styles from "./Settings.module.css";
+import NotifFrequency from "@/components/NotifFrequency";
 
 const Settings = ({ homeTabRef }) => {
   const handleSaveBtn = () => {
@@ -50,13 +51,24 @@ const Settings = ({ homeTabRef }) => {
           <Separator orientation={"horizontal"} size={"4"} />
         </Inset>
 
+        <Flex gap={"2"} wrap={"nowrap"} justify={"between"}>
+          <Text as={"label"} size={"3"}>
+            Notification Frequency
+          </Text>
+          <NotifFrequency />
+        </Flex>
+        <Inset py={"current"} mb={"4"}>
+          <Separator orientation={"horizontal"} size={"4"} />
+        </Inset>
+        {/*TODO - Setup Notifications Frequency Logic for Notifications*/}
+
         <Text as={"label"} size={"3"}>
-          Notification Frequency
+          Show Sunrise
         </Text>
         <Inset py={"current"} mb={"4"}>
           <Separator orientation={"horizontal"} size={"4"} />
         </Inset>
-        {/*TODO - Add Notifications Frequency Component*/}
+        {/*TODO - Add Logic for Showing Sunrise Prayer Card - Use Redux*/}
 
         <Text as={"label"} size={"3"}>
           Enable Last Third Reminders

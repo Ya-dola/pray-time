@@ -70,6 +70,7 @@ const SearchBar = ({
         />
       </TextField.Root>
 
+      {/*TODO - Add ScrollBar and it's Support with Button Navigation to Popover*/}
       {isFocused && options.length > 0 && (
         <Card className={styles.popover}>
           <ul>

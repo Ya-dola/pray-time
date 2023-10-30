@@ -1,3 +1,9 @@
+export const NOTIF_FREQS = {
+  ONE: "1",
+  THREE: "3",
+  FIVE: "5",
+};
+
 export const getFormattedDate = () => {
   // Get the current date in DD-MM-YYYY format
   const currentDate = new Date().toLocaleDateString("en-GB", {

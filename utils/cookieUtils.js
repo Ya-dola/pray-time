@@ -1,11 +1,20 @@
 import Cookies from "js-cookie";
+import { NOTIF_FREQS } from "@/utils/timeUtils";
 
 const COOKIENUM = {
   API_RESULTS_DATE: "api_results_date",
   CITY: "city",
   COUNTRY_CODE: "country_code",
   METHOD: "method",
+  NOTIF_FREQ: "notif_freq",
   UPDATE_RATE: "update_rate",
+};
+
+export const setApiResultsDate = async (value) =>
+  Cookies.set(COOKIENUM.API_RESULTS_DATE, value, { expires: 90 });
+export const getApiResultsDate = () => {
+  const input = Cookies.get(COOKIENUM.API_RESULTS_DATE);
+  return sanitizeDate(input) || "";
 };
 
 export const setCity = async (value) =>
@@ -29,11 +38,12 @@ export const getMethod = () => {
   return parseInt(sanitizeString(input)) || 3;
 };
 
-export const setApiResDate = async (value) =>
-  Cookies.set(COOKIENUM.API_RESULTS_DATE, value, { expires: 90 });
-export const getApiResDate = () => {
-  const input = Cookies.get(COOKIENUM.API_RESULTS_DATE);
-  return sanitizeDate(input) || "";
+export const setNotifFreq = (value) => {
+  Cookies.set(COOKIENUM.NOTIF_FREQ, value, { expires: 90 });
+};
+export const getNotifFreq = () => {
+  const input = Cookies.get(COOKIENUM.NOTIF_FREQ);
+  return sanitizeString(input) || NOTIF_FREQS.THREE;
 };
 
 export const setUpdateRate = async (value) =>
