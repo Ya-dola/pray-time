@@ -148,7 +148,12 @@ const LocationBar = () => {
         <Text as={"label"} size={"3"}>
           Location
         </Text>
-        <Button size={"2"} variant={"soft"} onClick={getDeviceLocation}>
+        <Button
+          size={"2"}
+          variant={"soft"}
+          onClick={getDeviceLocation}
+          highContrast
+        >
           Device Location <PaperPlaneIcon width={iconSize} height={iconSize} />
         </Button>
       </Flex>

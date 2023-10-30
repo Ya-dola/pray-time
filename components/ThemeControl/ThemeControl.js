@@ -25,7 +25,12 @@ const ThemeControl = ({ version = "icon", className, size = "2" }) => {
     return (
       <div className={className}>
         <Tooltip content={"Change Theme"}>
-          <IconButton variant={"soft"} size={size} onClick={changeTheme}>
+          <IconButton
+            variant={"soft"}
+            size={size}
+            onClick={changeTheme}
+            highContrast
+          >
             {theme === "light" ? (
               <MoonIcon width={iconSize} height={iconSize} />
             ) : (
