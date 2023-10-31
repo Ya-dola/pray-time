@@ -4,11 +4,14 @@
     left: 50%;
     transform: translate(-50%, -46%);
     border-color: var(--accent-7);
+    width: min(72vw, 840px);
+    max-width: min(72vw, 840px);
+}
+
+.scrollArea {
     height: 80vh;
     min-height: 80vh;
     max-height: 80vh;
-    width: min(72vw, 840px);
-    max-width: min(72vw, 840px);
 }
 
 .cardLayout {
@@ -17,6 +20,7 @@
     gap: var(--space-4);
     justify-content: flex-start;
     height: 100%;
+    padding: var(--card-padding);
 }
 
 @media (max-width: 768px) {
