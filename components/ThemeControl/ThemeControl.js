@@ -47,6 +47,7 @@ const ThemeControl = ({ version = "icon", className, size = "2" }) => {
 
     return (
       <div className={className}>
+        {/*TODO - Fix on iPhone SE*/}
         <Flex
           gap={"3"}
           wrap={"wrap"}

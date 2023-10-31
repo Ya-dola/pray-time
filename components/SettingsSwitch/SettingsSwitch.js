@@ -3,15 +3,18 @@ import { Flex, Switch, Text } from "@radix-ui/themes";
 import classNames from "classnames";
 import styles from "@/components/ThemeControl/ThemeControl.module.css";
 
-const SettingsSwitch = ({ getSwitchValue, setSwitchValue }) => {
+const SettingsSwitch = ({ getSwitchValue, setSwitchValue, enabled = true }) => {
   const labelClasses = classNames(styles.accentColor, styles.clickable);
 
   const [localSwitchVal, setLocalSwitchVal] = useState(false);
+
   useEffect(() => {
     setLocalSwitchVal(getSwitchValue);
   }, [getSwitchValue]);
 
   const handleSwitch = () => {
+    if (!enabled) return;
+
     setLocalSwitchVal(!localSwitchVal);
     setSwitchValue(!localSwitchVal);
   };
@@ -19,7 +22,7 @@ const SettingsSwitch = ({ getSwitchValue, setSwitchValue }) => {
   return (
     <Flex
       gap={"3"}
-      wrap={"wrap"}
+      wrap={"nowrap"}
       justify={"center"}
       className={styles.clickable}
       onClick={handleSwitch}
@@ -27,7 +30,7 @@ const SettingsSwitch = ({ getSwitchValue, setSwitchValue }) => {
       <Text as={"label"} className={labelClasses}>
         Off
       </Text>
-      <Switch checked={localSwitchVal} />
+      <Switch checked={localSwitchVal} disabled={!enabled} />
       <Text as={"label"} className={labelClasses}>
         On
       </Text>

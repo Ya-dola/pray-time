@@ -11,6 +11,12 @@ const COOKIENUM = {
   SHOW_LAST_THIRD: "show_last_third",
   SHOW_SUNRISE: "show_sunrise",
   UPDATE_RATE: "update_rate",
+  PRAYED_FAJR: "prayed_fajr",
+  PRAYED_DHUHR: "prayed_dhuhr",
+  PRAYED_ASR: "prayed_asr",
+  PRAYED_MAGHRIB: "prayed_maghrib",
+  PRAYED_ISHA: "prayed_isha",
+  PRAYED_LAST_THIRD: "prayed_last_third",
 };
 
 export const setApiResultsDate = async (value) =>
@@ -59,6 +65,7 @@ export const getNotifyLastThird = () => {
 
 export const setShowLastThird = (value) => {
   Cookies.set(COOKIENUM.SHOW_LAST_THIRD, value, { expires: 90 });
+  Cookies.set(COOKIENUM.NOTIFY_LAST_THIRD, value, { expires: 90 });
 };
 export const getShowLastThird = () => {
   const input = Cookies.get(COOKIENUM.SHOW_LAST_THIRD);
@@ -78,6 +85,54 @@ export const setUpdateRate = async (value) =>
 export const getUpdateRate = () => {
   const input = Cookies.get(COOKIENUM.UPDATE_RATE);
   return parseFloat(sanitizeString(input)) || 15;
+};
+
+export const setPrayedFajr = (value) => {
+  Cookies.set(COOKIENUM.PRAYED_FAJR, value, { expires: 90 });
+};
+export const getPrayedFajr = () => {
+  const input = Cookies.get(COOKIENUM.PRAYED_FAJR);
+  return sanitizeString(input) === "true";
+};
+
+export const setPrayedDhuhr = (value) => {
+  Cookies.set(COOKIENUM.PRAYED_DHUHR, value, { expires: 90 });
+};
+export const getPrayedDhuhr = () => {
+  const input = Cookies.get(COOKIENUM.PRAYED_DHUHR);
+  return sanitizeString(input) === "true";
+};
+
+export const setPrayedAsr = (value) => {
+  Cookies.set(COOKIENUM.PRAYED_ASR, value, { expires: 90 });
+};
+export const getPrayedAsr = () => {
+  const input = Cookies.get(COOKIENUM.PRAYED_ASR);
+  return sanitizeString(input) === "true";
+};
+
+export const setPrayedMaghrib = (value) => {
+  Cookies.set(COOKIENUM.PRAYED_MAGHRIB, value, { expires: 90 });
+};
+export const getPrayedMaghrib = () => {
+  const input = Cookies.get(COOKIENUM.PRAYED_MAGHRIB);
+  return sanitizeString(input) === "true";
+};
+
+export const setPrayedIsha = (value) => {
+  Cookies.set(COOKIENUM.PRAYED_ISHA, value, { expires: 90 });
+};
+export const getPrayedIsha = () => {
+  const input = Cookies.get(COOKIENUM.PRAYED_ISHA);
+  return sanitizeString(input) === "true";
+};
+
+export const setPrayedLastThird = (value) => {
+  Cookies.set(COOKIENUM.PRAYED_LAST_THIRD, value, { expires: 90 });
+};
+export const getPrayedLastThird = () => {
+  const input = Cookies.get(COOKIENUM.PRAYED_LAST_THIRD);
+  return sanitizeString(input) === "true";
 };
 
 const sanitizeString = (input) => {

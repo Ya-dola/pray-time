@@ -1,4 +1,4 @@
-import { Button, Card, Flex, Inset, ScrollArea } from "@radix-ui/themes";
+import { Button, Card, Inset, ScrollArea } from "@radix-ui/themes";
 import PushToastLayout from "@/components/PushToastLayout";
 import TimerNotif from "@/components/TimerNotif/TimerNotif";
 import PrayerCard from "@/components/PrayerCard/PrayerCard";
@@ -7,8 +7,20 @@ import { PRAYER_TIMINGS } from "@/utils/adhanApi";
 import styles from "./Home.module.css";
 import {
   getNotifyLastThird,
+  getPrayedAsr,
+  getPrayedDhuhr,
+  getPrayedFajr,
+  getPrayedIsha,
+  getPrayedLastThird,
+  getPrayedMaghrib,
   getShowLastThird,
   getShowSunrise,
+  setPrayedAsr,
+  setPrayedDhuhr,
+  setPrayedFajr,
+  setPrayedIsha,
+  setPrayedLastThird,
+  setPrayedMaghrib,
 } from "@/utils/cookieUtils";
 
 const Home = () => {
@@ -56,22 +68,44 @@ const Home = () => {
               minutes={4}
             />
 
-            <PrayerCard prayerName={PRAYER_TIMINGS.FAJR} />
+            <PrayerCard
+              prayerName={PRAYER_TIMINGS.FAJR}
+              getPrayerPrayed={getPrayedFajr}
+              setPrayerPrayed={setPrayedFajr}
+            />
             {getShowSunrise() && (
               <PrayerCard
                 prayerName={PRAYER_TIMINGS.SUNRISE}
                 notifEnabled={false}
               />
             )}
-            <PrayerCard prayerName={PRAYER_TIMINGS.DHUHR} />
-            <PrayerCard prayerName={PRAYER_TIMINGS.ASR} />
-            <PrayerCard prayerName={PRAYER_TIMINGS.MAGHRIB} />
-            <PrayerCard prayerName={PRAYER_TIMINGS.ISHA} />
+            <PrayerCard
+              prayerName={PRAYER_TIMINGS.DHUHR}
+              getPrayerPrayed={getPrayedDhuhr}
+              setPrayerPrayed={setPrayedDhuhr}
+            />
+            <PrayerCard
+              prayerName={PRAYER_TIMINGS.ASR}
+              getPrayerPrayed={getPrayedAsr}
+              setPrayerPrayed={setPrayedAsr}
+            />
+            <PrayerCard
+              prayerName={PRAYER_TIMINGS.MAGHRIB}
+              getPrayerPrayed={getPrayedMaghrib}
+              setPrayerPrayed={setPrayedMaghrib}
+            />
+            <PrayerCard
+              prayerName={PRAYER_TIMINGS.ISHA}
+              getPrayerPrayed={getPrayedIsha}
+              setPrayerPrayed={setPrayedIsha}
+            />
             {getShowLastThird() && (
               <PrayerCard
                 prayerName={PRAYER_TIMINGS.LAST_THIRD}
                 prayerLabel={"Last Third"}
                 notifEnabled={getNotifyLastThird()}
+                getPrayerPrayed={getPrayedLastThird}
+                setPrayerPrayed={setPrayedLastThird}
               />
             )}
           </div>
