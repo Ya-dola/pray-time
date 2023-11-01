@@ -2,25 +2,34 @@
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -46%);
+    transform: translate(-50%, -44%);
     border-color: var(--accent-7);
     width: min(72vw, 840px);
     max-width: min(72vw, 840px);
 }
 
 .scrollArea {
-    height: 80vh;
-    min-height: 80vh;
-    max-height: 80vh;
+    height: 86vh;
+    min-height: 86vh;
+    max-height: 86vh;
 }
 
 .cardLayout {
-    display: flex;
-    flex-flow: column nowrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+    grid-auto-rows: auto;
     gap: var(--space-4);
-    justify-content: flex-start;
     height: 100%;
     padding: var(--card-padding);
+    justify-content: center;
+}
+
+/* Center the children within each column */
+.cardLayout > * {
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center vertically */
+    align-items: center; /* Center horizontally */
 }
 
 @media (max-width: 768px) {

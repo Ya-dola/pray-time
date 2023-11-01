@@ -1,8 +1,9 @@
-import { Avatar, Card, Code, Flex, Heading } from "@radix-ui/themes";
+import { Avatar, Card, Code, Flex, Heading, Text } from "@radix-ui/themes";
 import { getPrayerTiming } from "@/utils/adhanApi";
 import { CheckCircledIcon, CircleBackslashIcon } from "@radix-ui/react-icons";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import styles from "./PrayerCard.module.css";
 
 const PrayerCard = ({
   prayerName,
@@ -23,7 +24,7 @@ const PrayerCard = ({
 
   if (!prayerTimes) return null;
 
-  const iconsSize = 36;
+  const iconsSize = 30;
 
   const handleClick = () => {
     if (!notifEnabled) return;
@@ -49,23 +50,42 @@ const PrayerCard = ({
   };
 
   return (
-    <Card asChild>
-      <button onClick={handleClick}>
-        <Flex gap={"4"} align={"center"} justify={"center"}>
-          <Avatar fallback={"ICON"} size={"6"} />
-          <Heading as={"h3"} weight={"medium"}>
-            {prayerLabel}
-          </Heading>
-          <Code weight={"medium"} size={"4"}>
-            <>
-              {prayerTimes.hr.toString().padStart(2, "0")}:
-              {prayerTimes.min.toString().padStart(2, "0")}
-            </>
-          </Code>
-          {notifEnabled && prayerStatus()}
-        </Flex>
-      </button>
-    </Card>
+    <div>
+      <Card asChild>
+        <button onClick={handleClick}>
+          <div className={styles.card}>
+            <div className={styles.detailsSection}>
+              <div className={styles.icon}>
+                <Avatar fallback={"ICON"} size={"6"} />
+              </div>
+              <div className={styles.wording}>
+                <Heading as={"h3"} weight={"medium"} size={"6"}>
+                  {prayerLabel}
+                </Heading>
+                <div>
+                  <Code weight={"medium"} size={"4"}>
+                    <>
+                      {prayerTimes.hr.toString().padStart(2, "0")}:
+                      {prayerTimes.min.toString().padStart(2, "0")}
+                    </>
+                  </Code>
+                </div>
+              </div>
+            </div>
+            <div>
+              {notifEnabled && (
+                <div className={styles.toggleSection}>
+                  <Text as={"p"} size={"2"} weight={"regular"}>
+                    Prayed
+                  </Text>
+                  {prayerStatus()}
+                </div>
+              )}
+            </div>
+          </div>
+        </button>
+      </Card>
+    </div>
   );
 };
 

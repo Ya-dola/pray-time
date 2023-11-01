@@ -35,25 +35,25 @@ const Home = () => {
           className={styles.scrollArea}
         >
           <div className={styles.cardLayout}>
-            <PushToastLayout
-              title="Pray Toast Time"
-              message="Test Body Message"
-            >
-              {(showToast) => (
-                <Button onClick={() => showToast()}>Trigger Toast</Button>
-              )}
-            </PushToastLayout>
-            <div>Hello</div>
-            <Button
-              onClick={() =>
-                showNotification(
-                  "Pray Notif Time",
-                  "Are you sure you want to miss your prayer??",
-                )
-              }
-            >
-              Trigger Notification
-            </Button>
+            {/*<PushToastLayout*/}
+            {/*  title="Pray Toast Time"*/}
+            {/*  message="Test Body Message"*/}
+            {/*>*/}
+            {/*  {(showToast) => (*/}
+            {/*    <Button onClick={() => showToast()}>Trigger Toast</Button>*/}
+            {/*  )}*/}
+            {/*</PushToastLayout>*/}
+            {/*<div>Hello</div>*/}
+            {/*<Button*/}
+            {/*  onClick={() =>*/}
+            {/*    showNotification(*/}
+            {/*      "Pray Notif Time",*/}
+            {/*      "Are you sure you want to miss your prayer??",*/}
+            {/*    )*/}
+            {/*  }*/}
+            {/*>*/}
+            {/*  Trigger Notification*/}
+            {/*</Button>*/}
 
             <TimerNotif
               title={"Timer Notification"}
@@ -103,7 +103,7 @@ const Home = () => {
               <PrayerCard
                 prayerName={PRAYER_TIMINGS.LAST_THIRD}
                 prayerLabel={"Last Third"}
-                notifEnabled={getNotifyLastThird()}
+                notifEnabled={getNotifyLastThird()} // Brackets coz value is passed
                 getPrayerPrayed={getPrayedLastThird}
                 setPrayerPrayed={setPrayedLastThird}
               />
