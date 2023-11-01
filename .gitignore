@@ -44,3 +44,6 @@ next-env.d.ts
 
 # Firebase Config Files
 public/firebase-config.json
+
+# Inspiration Folder
+/inspiration/
