@@ -24,8 +24,6 @@ const PrayerCard = ({
 
   if (!prayerTimes) return null;
 
-  const iconsSize = 30;
-
   const handleClick = () => {
     if (!notifEnabled) return;
 
@@ -36,16 +34,10 @@ const PrayerCard = ({
 
   const prayerStatus = () => {
     if (localPrayerPrayed)
-      return (
-        <CheckCircledIcon color={"teal"} width={iconsSize} height={iconsSize} />
-      );
+      return <CheckCircledIcon color={"teal"} className={styles.toggleIcon} />;
     else
       return (
-        <CircleBackslashIcon
-          color={"crimson"}
-          width={iconsSize}
-          height={iconsSize}
-        />
+        <CircleBackslashIcon color={"crimson"} className={styles.toggleIcon} />
       );
   };
 
@@ -56,14 +48,19 @@ const PrayerCard = ({
           <div className={styles.card}>
             <div className={styles.detailsSection}>
               <div className={styles.icon}>
-                <Avatar fallback={"ICON"} size={"6"} />
+                <Avatar fallback={"ICON"} size={{ initial: "5", sm: "6" }} />
               </div>
               <div className={styles.wording}>
-                <Heading as={"h3"} weight={"medium"} size={"6"}>
+                <Heading
+                  as={"h3"}
+                  weight={"medium"}
+                  size={{ initial: "4", sm: "6" }}
+                  trim={"end"}
+                >
                   {prayerLabel}
                 </Heading>
                 <div>
-                  <Code weight={"medium"} size={"4"}>
+                  <Code weight={"medium"} size={{ initial: "3", sm: "4" }}>
                     <>
                       {prayerTimes.hr.toString().padStart(2, "0")}:
                       {prayerTimes.min.toString().padStart(2, "0")}
