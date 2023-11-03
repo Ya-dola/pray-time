@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Blockquote,
   Button,
@@ -9,10 +10,6 @@ import {
   Separator,
   Text,
 } from "@radix-ui/themes";
-import LocationBar from "@/components/LocationBar/LocationBar";
-import ThemeControl from "@/components/ThemeControl/ThemeControl";
-import NotifFrequency from "@/components/NotifFrequency/NotifFrequency";
-import SettingsSwitch from "@/components/SettingsSwitch/SettingsSwitch";
 import {
   getNotifyLastThird,
   getShowLastThird,
@@ -21,9 +18,20 @@ import {
   setShowLastThird,
   setShowSunrise,
 } from "@/utils/cookieUtils";
+import LocationBar from "@/components/LocationBar/LocationBar";
+import ThemeControl from "@/components/ThemeControl/ThemeControl";
+import NotifFrequency from "@/components/NotifFrequency/NotifFrequency";
+import SettingsSwitch from "@/components/SettingsSwitch/SettingsSwitch";
 import styles from "./Settings.module.css";
 
 const Settings = ({ homeTabRef }) => {
+  const [localShowLastThird, setLocalShowLastThird] = useState(
+    getShowLastThird(),
+  );
+  const [localNotifyLastThird, setLocalNotifyLastThird] = useState(
+    getNotifyLastThird(),
+  );
+
   const handleSaveBtn = () => {
     if (homeTabRef.current) {
       homeTabRef.current.focus();
@@ -100,6 +108,10 @@ const Settings = ({ homeTabRef }) => {
               <SettingsSwitch
                 getSwitchValue={getShowLastThird}
                 setSwitchValue={setShowLastThird}
+                onClick={(switchVal) => {
+                  setLocalShowLastThird(switchVal);
+                  setLocalNotifyLastThird(switchVal);
+                }}
               />
             </Flex>
             <Inset py={"current"} mb={"4"}>
@@ -113,9 +125,9 @@ const Settings = ({ homeTabRef }) => {
               <SettingsSwitch
                 getSwitchValue={getNotifyLastThird}
                 setSwitchValue={setNotifyLastThird}
-                enabled={getShowLastThird()}
+                enabled={localShowLastThird}
+                preDefinedSwitchVal={localNotifyLastThird}
               />
-              {/*TODO - Fix Rendering Problem*/}
             </Flex>
             <Inset py={"current"} mb={"4"}>
               <Separator orientation={"horizontal"} size={"4"} />
