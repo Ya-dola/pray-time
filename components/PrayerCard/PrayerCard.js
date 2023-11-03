@@ -1,8 +1,8 @@
-import { Avatar, Card, Code, Flex, Heading, Text } from "@radix-ui/themes";
-import { getPrayerTiming } from "@/utils/adhanApi";
-import { CheckCircledIcon, CircleBackslashIcon } from "@radix-ui/react-icons";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
+import { Avatar, Card, Code, Heading, Text } from "@radix-ui/themes";
+import { CheckCircledIcon, CircleBackslashIcon } from "@radix-ui/react-icons";
+import { getPrayerTiming } from "@/utils/adhanApi";
 import styles from "./PrayerCard.module.css";
 
 const PrayerCard = ({

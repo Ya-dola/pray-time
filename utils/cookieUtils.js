@@ -19,36 +19,46 @@ const COOKIENUM = {
   PRAYED_LAST_THIRD: "prayed_last_third",
 };
 
+const expiryTime = 90;
+
 export const setApiResultsDate = async (value) =>
-  Cookies.set(COOKIENUM.API_RESULTS_DATE, sanitizeDate(value), { expires: 90 });
+  Cookies.set(COOKIENUM.API_RESULTS_DATE, sanitizeDate(value), {
+    expires: expiryTime,
+  });
 export const getApiResultsDate = () => {
   const input = Cookies.get(COOKIENUM.API_RESULTS_DATE);
   return sanitizeDate(input) || "";
 };
 
 export const setCity = async (value) =>
-  Cookies.set(COOKIENUM.CITY, sanitizeString(value), { expires: 90 });
+  Cookies.set(COOKIENUM.CITY, sanitizeString(value), {
+    expires: expiryTime,
+  });
 export const getCity = () => {
   const input = Cookies.get(COOKIENUM.CITY);
   return sanitizeString(input) || null;
 };
 
 export const setCountryCode = async (value) =>
-  Cookies.set(COOKIENUM.COUNTRY_CODE, sanitizeString(value), { expires: 90 });
+  Cookies.set(COOKIENUM.COUNTRY_CODE, sanitizeString(value), {
+    expires: expiryTime,
+  });
 export const getCountryCode = () => {
   const input = Cookies.get(COOKIENUM.COUNTRY_CODE);
   return sanitizeString(input) || null;
 };
 
 export const setMethod = async (value) =>
-  Cookies.set(COOKIENUM.METHOD, value, { expires: 90 });
+  Cookies.set(COOKIENUM.METHOD, value, { expires: expiryTime });
 export const getMethod = () => {
   const input = Cookies.get(COOKIENUM.METHOD);
   return parseInt(sanitizeString(input)) || 3;
 };
 
 export const setNotifFreq = (value) => {
-  Cookies.set(COOKIENUM.NOTIF_FREQ, sanitizeString(value), { expires: 90 });
+  Cookies.set(COOKIENUM.NOTIF_FREQ, sanitizeString(value), {
+    expires: expiryTime,
+  });
 };
 export const getNotifFreq = () => {
   const input = Cookies.get(COOKIENUM.NOTIF_FREQ);
@@ -56,7 +66,7 @@ export const getNotifFreq = () => {
 };
 
 export const setNotifyLastThird = (value) => {
-  Cookies.set(COOKIENUM.NOTIFY_LAST_THIRD, value, { expires: 90 });
+  Cookies.set(COOKIENUM.NOTIFY_LAST_THIRD, value, { expires: expiryTime });
 };
 export const getNotifyLastThird = () => {
   const input = Cookies.get(COOKIENUM.NOTIFY_LAST_THIRD);
@@ -64,8 +74,8 @@ export const getNotifyLastThird = () => {
 };
 
 export const setShowLastThird = (value) => {
-  Cookies.set(COOKIENUM.SHOW_LAST_THIRD, value, { expires: 90 });
-  Cookies.set(COOKIENUM.NOTIFY_LAST_THIRD, value, { expires: 90 });
+  Cookies.set(COOKIENUM.SHOW_LAST_THIRD, value, { expires: expiryTime });
+  Cookies.set(COOKIENUM.NOTIFY_LAST_THIRD, value, { expires: expiryTime });
 };
 export const getShowLastThird = () => {
   const input = Cookies.get(COOKIENUM.SHOW_LAST_THIRD);
@@ -73,7 +83,7 @@ export const getShowLastThird = () => {
 };
 
 export const setShowSunrise = (value) => {
-  Cookies.set(COOKIENUM.SHOW_SUNRISE, value, { expires: 90 });
+  Cookies.set(COOKIENUM.SHOW_SUNRISE, value, { expires: expiryTime });
 };
 export const getShowSunrise = () => {
   const input = Cookies.get(COOKIENUM.SHOW_SUNRISE);
@@ -81,14 +91,14 @@ export const getShowSunrise = () => {
 };
 
 export const setUpdateRate = async (value) =>
-  Cookies.set(COOKIENUM.UPDATE_RATE, value, { expires: 90 });
+  Cookies.set(COOKIENUM.UPDATE_RATE, value, { expires: expiryTime });
 export const getUpdateRate = () => {
   const input = Cookies.get(COOKIENUM.UPDATE_RATE);
   return parseFloat(sanitizeString(input)) || 15;
 };
 
 export const setPrayedFajr = (value) => {
-  Cookies.set(COOKIENUM.PRAYED_FAJR, value, { expires: 90 });
+  Cookies.set(COOKIENUM.PRAYED_FAJR, value, { expires: expiryTime });
 };
 export const getPrayedFajr = () => {
   const input = Cookies.get(COOKIENUM.PRAYED_FAJR);
@@ -96,7 +106,7 @@ export const getPrayedFajr = () => {
 };
 
 export const setPrayedDhuhr = (value) => {
-  Cookies.set(COOKIENUM.PRAYED_DHUHR, value, { expires: 90 });
+  Cookies.set(COOKIENUM.PRAYED_DHUHR, value, { expires: expiryTime });
 };
 export const getPrayedDhuhr = () => {
   const input = Cookies.get(COOKIENUM.PRAYED_DHUHR);
@@ -104,7 +114,7 @@ export const getPrayedDhuhr = () => {
 };
 
 export const setPrayedAsr = (value) => {
-  Cookies.set(COOKIENUM.PRAYED_ASR, value, { expires: 90 });
+  Cookies.set(COOKIENUM.PRAYED_ASR, value, { expires: expiryTime });
 };
 export const getPrayedAsr = () => {
   const input = Cookies.get(COOKIENUM.PRAYED_ASR);
@@ -112,7 +122,7 @@ export const getPrayedAsr = () => {
 };
 
 export const setPrayedMaghrib = (value) => {
-  Cookies.set(COOKIENUM.PRAYED_MAGHRIB, value, { expires: 90 });
+  Cookies.set(COOKIENUM.PRAYED_MAGHRIB, value, { expires: expiryTime });
 };
 export const getPrayedMaghrib = () => {
   const input = Cookies.get(COOKIENUM.PRAYED_MAGHRIB);
@@ -120,7 +130,7 @@ export const getPrayedMaghrib = () => {
 };
 
 export const setPrayedIsha = (value) => {
-  Cookies.set(COOKIENUM.PRAYED_ISHA, value, { expires: 90 });
+  Cookies.set(COOKIENUM.PRAYED_ISHA, value, { expires: expiryTime });
 };
 export const getPrayedIsha = () => {
   const input = Cookies.get(COOKIENUM.PRAYED_ISHA);
@@ -128,7 +138,7 @@ export const getPrayedIsha = () => {
 };
 
 export const setPrayedLastThird = (value) => {
-  Cookies.set(COOKIENUM.PRAYED_LAST_THIRD, value, { expires: 90 });
+  Cookies.set(COOKIENUM.PRAYED_LAST_THIRD, value, { expires: expiryTime });
 };
 export const getPrayedLastThird = () => {
   const input = Cookies.get(COOKIENUM.PRAYED_LAST_THIRD);

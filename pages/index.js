@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { Box, Flex, Tabs } from "@radix-ui/themes";
 import { GearIcon, HomeIcon } from "@radix-ui/react-icons";
 import Layout from "@/components/Layout/Layout";
@@ -5,7 +6,6 @@ import Home from "@/components/Home/Home";
 import Settings from "@/components/Settings/Settings";
 import ThemeControl from "@/components/ThemeControl/ThemeControl";
 import styles from "./index.module.css";
-import { useRef } from "react";
 
 const metadata = { title: "Pray Time", description: "App Page" };
 

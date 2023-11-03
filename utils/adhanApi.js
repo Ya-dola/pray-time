@@ -1,3 +1,5 @@
+import { store } from "@/redux/store";
+import { setAdhanData } from "@/redux/adhanDataSlice";
 import {
   getApiResultsDate,
   getCity,
@@ -10,8 +12,6 @@ import {
   setUpdateRate,
 } from "@/utils/cookieUtils";
 import { getFormattedDate, isTimeBetween } from "@/utils/timeUtils";
-import { setAdhanData } from "@/redux/adhanDataSlice";
-import { store } from "@/redux/store";
 
 const API_BASE_URL = "http://api.aladhan.com/v1/timingsByCity";
 

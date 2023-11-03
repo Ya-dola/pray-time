@@ -1,10 +1,7 @@
 import { Button, Card, Inset, ScrollArea } from "@radix-ui/themes";
-import PushToastLayout from "@/components/PushToastLayout";
-import TimerNotif from "@/components/TimerNotif/TimerNotif";
-import PrayerCard from "@/components/PrayerCard/PrayerCard";
-import { showNotification } from "@/utils/notifications";
 import { PRAYER_TIMINGS } from "@/utils/adhanApi";
-import styles from "./Home.module.css";
+import { showNotification } from "@/utils/notifications";
+import PushToastLayout from "@/components/PushToastLayout";
 import {
   getNotifyLastThird,
   getPrayedAsr,
@@ -22,6 +19,9 @@ import {
   setPrayedLastThird,
   setPrayedMaghrib,
 } from "@/utils/cookieUtils";
+import TimerNotif from "@/components/TimerNotif/TimerNotif";
+import PrayerCard from "@/components/PrayerCard/PrayerCard";
+import styles from "./Home.module.css";
 
 const Home = () => {
   return (
