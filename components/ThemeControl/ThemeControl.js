@@ -44,34 +44,35 @@ const ThemeControl = ({ version = "icon", className, size = "2" }) => {
 
   const themeSwitch = () => {
     const labelClasses = classNames(styles.accentColor, styles.clickable);
+    const flexClasses = classNames(styles.flexSwitch, styles.clickable);
+    const iconClasses = classNames(styles.accentColor, styles.themeIconSwitch);
 
     return (
       <div className={className}>
-        {/*TODO - Fix on iPhone SE*/}
         <Flex
-          gap={"3"}
           wrap={"wrap"}
           justify={"center"}
-          className={styles.clickable}
+          className={flexClasses}
           onClick={changeTheme}
+          align={"center"}
         >
-          <SunIcon
-            width={iconSize}
-            height={iconSize}
-            className={styles.accentColor}
-          />
-          <Text as={"label"} className={labelClasses}>
+          <SunIcon className={iconClasses} />
+          <Text
+            as={"label"}
+            size={{ initial: "2", sm: "3" }}
+            className={labelClasses}
+          >
             Light Mode
           </Text>
           <Switch checked={theme === "dark"} />
-          <Text as={"label"} className={labelClasses}>
+          <Text
+            as={"label"}
+            size={{ initial: "2", sm: "3" }}
+            className={labelClasses}
+          >
             Dark Mode
           </Text>
-          <MoonIcon
-            width={iconSize}
-            height={iconSize}
-            className={styles.accentColor}
-          />
+          <MoonIcon className={iconClasses} />
         </Flex>
       </div>
     );

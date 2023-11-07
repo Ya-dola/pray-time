@@ -42,10 +42,35 @@
 @media (max-width: 610px) {
     .card {
         width: 100vw;
-        max-width: 86vw;
+        max-width: 88vw;
     }
 
     .cardLayout {
         grid-template-columns: repeat(auto-fit, minmax(9rem, 1fr));
+    }
+}
+
+
+@media (max-width: 380px) {
+    .card {
+        transform: translate(-50%, -45%);
+        width: 100vw;
+        max-width: 88vw;
+    }
+
+    .cardLayout {
+        grid-template-columns: repeat(auto-fit, minmax(8.25rem, 1fr));
+    }
+}
+
+@media (max-width: 350px) {
+    .card {
+        transform: translate(-50%, -46.5%);
+        width: 100vw;
+        max-width: 90vw;
+    }
+
+    .cardLayout {
+        grid-template-columns: repeat(auto-fit, minmax(7.6rem, 1fr));
     }
 }

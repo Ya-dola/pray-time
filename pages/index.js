@@ -9,7 +9,6 @@ import styles from "./index.module.css";
 
 const metadata = { title: "Pray Time", description: "App Page" };
 
-// TODO - FIX Responsive Sizes Everywhere
 const Index = () => {
   const TABS = {
     HOME: "home",
@@ -26,7 +25,7 @@ const Index = () => {
         <Tabs.List className={styles.tabList}>
           <div className={styles.tabLeftSpace}></div>
 
-          <Flex gap={"9"} wrap={"nowrap"}>
+          <Flex wrap={"nowrap"} className={styles.tabsPages}>
             <Tabs.Trigger value={TABS.HOME} ref={homeTabRef}>
               <Flex gap={"3"} align={"center"} justify={"center"}>
                 <HomeIcon width={iconSize} height={iconSize} />

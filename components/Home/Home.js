@@ -25,7 +25,7 @@ import styles from "./Home.module.css";
 
 const Home = () => {
   return (
-    <Card size={"3"} className={styles.card}>
+    <Card size={{ initial: "2", sm: "3" }} className={styles.card}>
       <Inset>
         <ScrollArea
           type={"hover"}

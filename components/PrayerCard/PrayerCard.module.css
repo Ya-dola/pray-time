@@ -33,6 +33,10 @@
     white-space: nowrap;
 }
 
+.wordingHeading {
+    font-size: calc(var(--font-size-6) * var(--heading-font-size-adjust));
+}
+
 .toggleSection {
     display: flex;
     flex-flow: row nowrap;
@@ -50,12 +54,16 @@
 
 @media (max-width: 610px) {
     .card {
-        width: 8rem;
+        width: 8.25rem;
         min-height: 5.8375rem;
     }
 
     .detailsSection {
         gap: var(--space-3);
+    }
+
+    .wordingHeading {
+        font-size: calc(var(--font-size-5) * var(--heading-font-size-adjust));
     }
 
     .toggleSection {
@@ -65,5 +73,27 @@
     .toggleIcon {
         width: 1.25rem;
         height: 1.25rem;
+    }
+}
+
+@media (max-width: 380px) {
+    .card {
+        width: 7.8rem;
+        /*min-height: 5.8375rem;*/
+    }
+
+    .wordingHeading {
+        font-size: calc(var(--font-size-4) * var(--heading-font-size-adjust));
+    }
+}
+
+@media (max-width: 350px) {
+    .card {
+        width: 7.25rem;
+        /*min-height: 5.8375rem;*/
+    }
+
+    .detailsSection {
+        gap: var(--space-2);
     }
 }

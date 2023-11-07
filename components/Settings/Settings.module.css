@@ -37,6 +37,25 @@
 @media (max-width: 610px) {
     .card {
         width: 100vw;
-        max-width: 86vw;
+        max-width: 88vw;
+    }
+}
+
+@media (max-width: 380px) {
+    .card {
+        transform: translate(-50%, -47%);
+    }
+}
+
+@media (max-width: 350px) {
+    .card {
+        width: 100vw;
+        max-width: 90vw;
+    }
+
+    .scrollArea {
+        height: 82vh;
+        min-height: 82vh;
+        max-height: 82vh;
     }
 }

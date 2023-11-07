@@ -54,8 +54,8 @@ const PrayerCard = ({
                 <Heading
                   as={"h3"}
                   weight={"medium"}
-                  size={{ initial: "4", sm: "6" }}
                   trim={"end"}
+                  className={styles.wordingHeading}
                 >
                   {prayerLabel}
                 </Heading>

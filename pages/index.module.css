@@ -5,6 +5,10 @@
     height: var(--space-8);
 }
 
+.tabsPages {
+    gap: var(--space-9);
+}
+
 .tabLeftSpace {
     margin-right: auto;
 }
@@ -22,3 +26,15 @@
     min-height: 80vh;
 }
 
+
+@media (max-width: 420px) {
+    .tabsPages {
+        gap: var(--space-7);
+    }
+}
+
+@media (max-width: 350px) {
+    .tabsPages {
+        gap: var(--space-3);
+    }
+}
