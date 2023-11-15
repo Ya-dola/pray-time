@@ -29,7 +29,7 @@ const PrayerCard = ({
 
     setLocalPrayerPrayed(!localPrayerPrayed);
     setPrayerPrayed(!localPrayerPrayed);
-    // TODO - Add Logic to Handle Stopping Notification for this Prayer
+    // TODO - Add Logic to Handle Stopping Notification for this Prayer if Prayed
   };
 
   const prayerStatus = () => {

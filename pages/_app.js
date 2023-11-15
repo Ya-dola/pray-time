@@ -9,6 +9,8 @@ import { store } from "@/redux/store";
 import "@/styles/radixThemeConfig.css";
 
 const MyApp = ({ Component, pageProps }) => {
+  // TODO - Configure PWA Properly for NextJS App
+
   // Service Worker Connection
   if (
     typeof window !== "undefined" &&

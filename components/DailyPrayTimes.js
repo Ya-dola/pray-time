@@ -8,7 +8,7 @@ const DailyPrayTimes = () => {
       console.log("Fetched Adhan Data - Initial Load");
     });
 
-    // TODO - If No cookies for city and country, open Settings Tab with a Callout
+    // TODO - If No cookies for city and country, open Settings Tab with a Callout Dialog
   }, []);
 
   return <DailyPrayTimesUpdater />;

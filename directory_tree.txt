@@ -1,0 +1,48 @@
+|  --.
+|    |--./.env.local
+|    |--./.eslintrc.json
+|    |--./.gitignore
+|    |--./directory_tree.txt
+|    |--./files_and_directories.txt
+|    |--./jsconfig.json
+|    |--./LICENSE
+|    |--./next.config.js
+|    |--./package-lock.json
+|    |--./package.json
+|    |--./postcss.config.js
+|    |--./README.md
+|    |--./tailwind.config.js
+|    |--./test.json
+|    |--./test.sh
+|    |--./tree.sh
+|  |  --components
+|  |    |--./components/DailyPrayTimes.js
+|  |    |--./components/DailyPrayTimesUpdater.js
+|  |    |--./components/PushToastLayout.js
+|  |  |  --Home
+|  |  |    |--./components/Home/Home.js
+|  |  |    |--./components/Home/Home.module.css
+|  |  |  --Layout
+|  |  |    |--./components/Layout/Layout.js
+|  |  |    |--./components/Layout/Layout.module.css
+|  |  |  --LocationBar
+|  |  |    |--./components/LocationBar/LocationBar.js
+|  |  |  --NotifFrequency
+|  |  |    |--./components/NotifFrequency/NotifFrequency.js
+|  |  |  --PrayerCard
+|  |  |    |--./components/PrayerCard/PrayerCard.js
+|  |  |    |--./components/PrayerCard/PrayerCard.module.css
+|  |  |  --SearchBar
+|  |  |    |--./components/SearchBar/SearchBar.js
+|  |  |    |--./components/SearchBar/SearchBar.module.css
+|  |  |  --Settings
+|  |  |    |--./components/Settings/Settings.js
+|  |  |    |--./components/Settings/Settings.module.css
+|  |  |  --SettingsSwitch
+|  |  |    |--./components/SettingsSwitch/SettingsSwitch.js
+|  |  |    |--./components/SettingsSwitch/SettingsSwtich.module.css
+|  |  |  --ThemeControl
+|  |  |    |--./components/ThemeControl/ThemeControl.js
+|  |  |    |--./components/ThemeControl/ThemeControl.module.css
+|  |  |  --TimerNotif
+|  |  |    |--./components/TimerNotif/TimerNotif.js
